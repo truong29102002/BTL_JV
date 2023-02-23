@@ -5,6 +5,7 @@
 package btl_jv;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -119,7 +120,9 @@ public class QLDonHang extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
+        if (JOptionPane.showConfirmDialog(this, "Ban co muon dong?", "Close", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowClosing
 
     /**
