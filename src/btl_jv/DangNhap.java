@@ -5,7 +5,6 @@
 package btl_jv;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,16 +12,18 @@ import javax.swing.JOptionPane;
  * @author xuant
  */
 public class DangNhap extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form DangNhap
      */
     ArrayList<TaiKhoan> listTk = new ArrayList<>();
     TaiKhoan checkTK = new TaiKhoan();
-
+    
     public DangNhap() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,17 +116,19 @@ public class DangNhap extends javax.swing.JFrame {
             } else if ("user".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
                 Users us = new Users();
                 us.setLocationRelativeTo(null);
+                us.labelUser.setText(txtTK.getText());
                 us.setVisible(true);
 //                this.setVisible(false);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Sai mat khau", "Thong bao", JOptionPane.WARNING_MESSAGE);
-
+                
             }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Khong ton tai tai khoan nay", "Thong bao", JOptionPane.WARNING_MESSAGE);
         }
-
+        
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**

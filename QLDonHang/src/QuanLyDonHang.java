@@ -2,113 +2,125 @@
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author An Mai
  */
 public class QuanLyDonHang extends javax.swing.JFrame {
+
     ArrayList<DonHang> dsDH = new ArrayList<DonHang>();
     ArrayList<DonHang> dsDHHT = new ArrayList<DonHang>();
     ArrayList<DonHang> dsDHC = new ArrayList<DonHang>();
-    String fileName = "D:QuanLyDonHang";
-    DBEngine db = new DBEngine();
+    File fileName ;
+//    DBEngine db = new DBEngine();
     int dongChon = -1;//Dòng chọn bảng hóa đơn
     DonHang dh = new DonHang();
-    public void fakeData(){
-        DonHang a = new DonHang("DH01","20/11/2020","KHMT01",14,"Công nghệ thông tin","0974536278","Đã hoàn thành");
+
+    public void fakeData() {
+        DonHang a = new DonHang("DH01", "20/11/2020", "KHMT01", 14, "Công nghệ thông tin", "0974536278", "Đã hoàn thành");
         dsDH.add(a);
-        DonHang b = new DonHang("DH02","25/09/2019","HTTT02",15,"Công nghệ thông tin","0987536278","Chờ xác nhận");
+        DonHang b = new DonHang("DH02", "25/09/2019", "HTTT02", 15, "Công nghệ thông tin", "0987536278", "Chờ xác nhận");
         dsDH.add(b);
-        DonHang c = new DonHang("DH03","10/03/2018","CNTT01",13,"Công nghệ thông tin","0974536438","Đã hoàn thành");
+        DonHang c = new DonHang("DH03", "10/03/2018", "CNTT01", 13, "Công nghệ thông tin", "0974536438", "Đã hoàn thành");
         dsDH.add(c);
-        DonHang d = new DonHang("DH04","15/12/2019","KTPM01",14,"Công nghệ thông tin","0973236278","Chờ xác nhận");
+        DonHang d = new DonHang("DH04", "15/12/2019", "KTPM01", 14, "Công nghệ thông tin", "0973236278", "Chờ xác nhận");
         dsDH.add(d);
-        DonHang e = new DonHang("DH05","08/12/2020","Cơ khí1",13,"Cơ khí","0932236278","Chờ xác nhận");
+        DonHang e = new DonHang("DH05", "08/12/2020", "Cơ khí1", 13, "Cơ khí", "0932236278", "Chờ xác nhận");
         dsDH.add(e);
-        DonHang f = new DonHang("DH06","04/11/2018","Điển tử 1 ",15,"Điện tử","0921236278","Đã hoàn thành");
+        DonHang f = new DonHang("DH06", "04/11/2018", "Điển tử 1 ", 15, "Điện tử", "0921236278", "Đã hoàn thành");
         dsDH.add(f);
-        DonHang g = new DonHang("DH07","28/10/2020","Quản trị khách sạn 1",15,"Quản lý knh doanh","0921236438","Chờ xác nhận");
+        DonHang g = new DonHang("DH07", "28/10/2020", "Quản trị khách sạn 1", 15, "Quản lý knh doanh", "0921236438", "Chờ xác nhận");
         dsDH.add(g);
-        DonHang h = new DonHang("DH08","11/09/2020","Du lịch",15,"Du lịch","0921224538","Chờ xác nhận");
+        DonHang h = new DonHang("DH08", "11/09/2020", "Du lịch", 15, "Du lịch", "0921224538", "Chờ xác nhận");
         dsDH.add(h);
-        DonHang i = new DonHang("DH09","02/10/2019","Ngôn ngữ Anh 1",15,"Ngôn ngữ Anh","0932224538","Đã hoàn thành");
+        DonHang i = new DonHang("DH09", "02/10/2019", "Ngôn ngữ Anh 1", 15, "Ngôn ngữ Anh", "0932224538", "Đã hoàn thành");
         dsDH.add(i);
-        DonHang k = new DonHang("DH10","01/11/2018","Kế toán 1",15,"Kế-Kiểm","0931424538","Đã hoàn thành");
+        DonHang k = new DonHang("DH10", "01/11/2018", "Kế toán 1", 15, "Kế-Kiểm", "0931424538", "Đã hoàn thành");
         dsDH.add(k);
-        DonHang l = new DonHang("DH11","01/09/2018","KTMP03",15,"Công nghệ thông tin","0961424538","Chờ xác nhận");
+        DonHang l = new DonHang("DH11", "01/09/2018", "KTMP03", 15, "Công nghệ thông tin", "0961424538", "Chờ xác nhận");
         dsDH.add(l);
-        DonHang m = new DonHang("DH12","02/12/2018","KTMP04",15,"Công nghệ thông tin","0961424538","Chờ xác nhận");
+        DonHang m = new DonHang("DH12", "02/12/2018", "KTMP04", 15, "Công nghệ thông tin", "0961424538", "Chờ xác nhận");
         dsDH.add(m);
-        luuFile();
-        docFile();
+//        luuFile();
+//        docFile();
         //file.ghiHD(dsDH);
     }
+
     public QuanLyDonHang() {
         initComponents();
         fakeData();
         loadTableHoaDon();
+        fileName = new File("DonHang_Excel.xls");
+    }
+//    public void luuFile(){
+//        try{
+//            db.luuFile(fileName, dsDH);
+//        }catch(Exception e){
+//            System.out.println(e.toString());
+//        }
+//    }
 
-    }
-    public void luuFile(){
-        try{
-            db.luuFile(fileName, dsDH);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        }
-    }
-    
-    public void docFile(){
-        try{
-            dsDH = (ArrayList<DonHang>) db.docFile(fileName);
-        }catch(Exception e){
-            System.out.printf(e.toString());
-        }
-    }
-    public void find_HT(){
-        for(DonHang s:dsDH){
-            if(s.getTinhT().equals("Đã hoàn thành")){
-                dsDHHT.add(s);                
+//    public void docFile(){
+//        try{
+//            dsDH = (ArrayList<DonHang>) db.docFile(fileName);
+//        }catch(Exception e){
+//            System.out.printf(e.toString());
+//        }
+//    }
+    public void find_HT() {
+        for (DonHang s : dsDH) {
+            if (s.getTinhT().equals("Đã hoàn thành")) {
+                dsDHHT.add(s);
             }
         }
     }
-    public void find_C(){
-        for(DonHang s:dsDH){
-            if(s.getTinhT().equals("Chờ xác nhận")){
+
+    public void find_C() {
+        for (DonHang s : dsDH) {
+            if (s.getTinhT().equals("Chờ xác nhận")) {
                 dsDHC.add(s);
-                
+
             }
         }
     }
-    public void sua_TT(){
-        for(DonHang s:dsDH){
-            if(s.getTinhT().equals("Chờ xác nhận")){
+
+    public void sua_TT() {
+        for (DonHang s : dsDH) {
+            if (s.getTinhT().equals("Chờ xác nhận")) {
                 s.setTinhT("Đã hoàn thành");
             }
         }
-        
+
     }
-    public void loadTableHoaDon(){
+
+    public void loadTableHoaDon() {
         TableDH.setModel(new TableDonHang(dsDH));
     }
-    public void loadDHHoanThanh(){
+
+    public void loadDHHoanThanh() {
         TableDH.setModel(new TableDonHang(dsDHHT));
     }
-    public void loadDHHCho(){
+
+    public void loadDHHCho() {
         TableDH.setModel(new TableDonHang(dsDHC));
     }
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+
+    public void close() {
+        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -274,9 +286,9 @@ public class QuanLyDonHang extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(105, 105, 105)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,14 +325,13 @@ public class QuanLyDonHang extends javax.swing.JFrame {
                         .addGap(149, 149, 149)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(20, 20, 20))
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
                 .addComponent(jButton2)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,15 +362,16 @@ public class QuanLyDonHang extends javax.swing.JFrame {
     private void BtnXoaDH(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXoaDH
         // TODO add your handling code here:
         dongChon = TableDH.getSelectedRow();
-        if(dongChon != -1){
+        if (dongChon != -1) {
             dsDH.remove(dongChon);
-            JOptionPane.showMessageDialog(this, 
-                    "Xóa đơn hàng thành công","Thông báo", WIDTH);
+            JOptionPane.showMessageDialog(this,
+                    "Xóa đơn hàng thành công", "Thông báo", WIDTH);
             loadTableHoaDon();
-        } else
-            JOptionPane.showMessageDialog(this, 
-                    "Chưa chọn dòng xóa","Thông báo", WIDTH);
-        luuFile();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Chưa chọn dòng xóa", "Thông báo", WIDTH);
+        }
+//        luuFile();
     }//GEN-LAST:event_BtnXoaDH
 
     private void BtnXacNhan(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXacNhan
@@ -371,27 +383,47 @@ public class QuanLyDonHang extends javax.swing.JFrame {
     private void BtnThoat(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnThoat
         // TODO add your handling code here:
         close();
-        
-    }//GEN-LAST:event_BtnThoat
 
+    }//GEN-LAST:event_BtnThoat
+    public void pt_XuatFileExcel(JTable table, File file) {
+        try {
+            FileWriter out = new FileWriter(file);
+// Xuat tieu de bang ra file excel
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                out.write(table.getColumnName(i) + "\t");
+            }
+            out.write("\n");
+// Xuat noi dung bang ra file excel.
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < table.getColumnCount(); j++) {
+                    out.write(table.getValueAt(i, j).toString() + "\t"); // \t de chuyen sang cot moi trong file excel.
+                }
+                out.write("\n"); // \n de xuong dong moi trong file excel.
+            }
+            out.close();
+            JOptionPane.showMessageDialog(null, "Ghi ra file " + file);
+        } catch (IOException ex) {
+        }
+    }
     private void BtnThongKe(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnThongKe
         // TODO add your handling code here:
-       
+        pt_XuatFileExcel(TableDH, fileName);
     }//GEN-LAST:event_BtnThongKe
 
     private void TableDHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDHMouseClicked
         // TODO add your handling code here:
         dongChon = TableDH.getSelectedRow();
-        if(dongChon != -1){
+        if (dongChon != -1) {
             dh = dsDH.get(dongChon);
-            txtMaDH.setText(dh.getMaHD()+"");
-            txtNgayD.setText(dh.getNgayD()+"");
-            txtTenL.setText(dh.getTenL()+"");
-            txtKhoa.setText(dh.getKhoa()+"");
-            txtKhoas.setText(dh.getKhoas()+"");
-            txtSDT.setText(dh.getSoDT()+"");
+            txtMaDH.setText(dh.getMaHD() + "");
+            txtNgayD.setText(dh.getNgayD() + "");
+            txtTenL.setText(dh.getTenL() + "");
+            txtKhoa.setText(dh.getKhoa() + "");
+            txtKhoas.setText(dh.getKhoas() + "");
+            txtSDT.setText(dh.getSoDT() + "");
     }//GEN-LAST:event_TableDHMouseClicked
-}
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -421,7 +453,7 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new QuanLyDonHang().setVisible(true);
             }
