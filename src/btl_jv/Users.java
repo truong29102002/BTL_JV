@@ -4,6 +4,8 @@
  */
 package btl_jv;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,14 +13,53 @@ import javax.swing.JOptionPane;
  * @author xuant
  */
 public class Users extends javax.swing.JFrame {
+
     /**
      * Creates new form Users
      */
+    ArrayList<DonHang> dsDH = new ArrayList<>();
+    int chonDong = -1;
+    int i = 0;
+    DonHang dh = new DonHang();
+
+    void TongTien() {
+        double sumTT = 0;
+        for (DonHang i : dsDH) {
+            sumTT += i.TongTien();
+        }
+        lbTongTien.setText(String.valueOf(sumTT) + " VND");
+    }
+
+    void LoadTable() {
+        tableDH.setModel(new TableDH(dsDH));
+    }
+
+    void CbxLoaiSP() {
+        String tenLoai[] = {"Ao the duc", "Ao khoac", "Ao thuc hanh"};
+        cbxLoaiSP.setModel(new DefaultComboBoxModel<>(tenLoai));
+    }
+
+    void CbxKhoaH() {
+        String tenKhoa[] = {"K17", "K16", "K15", "K14"};
+        cbxKhoa.setModel(new DefaultComboBoxModel<>(tenKhoa));
+    }
+
+    void CbxSize() {
+        String size[] = {"S", "M", "L", "XL", "2XL", "3XL"};
+        cbxsize.setModel(new DefaultComboBoxModel<>(size));
+    }
 
     public Users() {
+        dsDH.add(new DonHang("D100", "abc", "KTPM1", "CNTT", "Ao khoac", "S", "K15", 10, 100000));
         initComponents();
+        CbxLoaiSP();
+        CbxKhoaH();
+        CbxSize();
+        lbGiaTien.setText("100000");
+        LoadTable();
+        TongTien();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +126,11 @@ public class Users extends javax.swing.JFrame {
         jLabel4.setText("So luong dat");
 
         btnRq.setText("Gửi yêu cầu");
+        btnRq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRqActionPerformed(evt);
+            }
+        });
 
         cbxKhoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -97,6 +143,11 @@ public class Users extends javax.swing.JFrame {
         cbxsize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbxLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxLoaiSP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxLoaiSPItemStateChanged(evt);
+            }
+        });
 
         tableDH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,6 +160,11 @@ public class Users extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableDH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableDHMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableDH);
 
         btnXemMau.setText("Xem mẫu các sản phảm");
@@ -119,10 +175,25 @@ public class Users extends javax.swing.JFrame {
         });
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Giá tiền:");
 
@@ -156,8 +227,8 @@ public class Users extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 109, Short.MAX_VALUE))
+                                .addComponent(lbTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 33, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(linkFeedback)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -176,11 +247,15 @@ public class Users extends javax.swing.JFrame {
                             .addComponent(txtSLD, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(txtKhoa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(txtTenLop, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(115, 115, 115)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
-                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbxLoaiSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -210,7 +285,9 @@ public class Users extends javax.swing.JFrame {
                                 .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Khoa)
-                                    .addComponent(txtKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(lbGiaTien)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,17 +299,12 @@ public class Users extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(cbxKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel1)
-                                            .addComponent(txtTenLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5)
-                                            .addComponent(cbxLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel7)
-                                            .addComponent(lbGiaTien))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(txtTenLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5)
+                                        .addComponent(cbxLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
                         .addComponent(btnXemMau))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
@@ -271,7 +343,7 @@ public class Users extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Ban muon dang xuat?", "Dang xuat", JOptionPane.YES_NO_OPTION, 0)==JOptionPane.YES_OPTION){
+        if (JOptionPane.showConfirmDialog(this, "Ban muon dang xuat?", "Dang xuat", JOptionPane.YES_NO_OPTION, 0) == JOptionPane.YES_OPTION) {
             this.dispose();
             DangNhap dn = new DangNhap();
             dn.setLocationRelativeTo(null);
@@ -285,6 +357,98 @@ public class Users extends javax.swing.JFrame {
         mSp.setLocationRelativeTo(null);
         mSp.setVisible(true);
     }//GEN-LAST:event_btnXemMauActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        i = ++i;
+        String tenLop = txtTenLop.getText();
+        String tenKhoa = txtKhoa.getText();
+        String loaiSP = (String) cbxLoaiSP.getSelectedItem();
+        String size = (String) cbxsize.getSelectedItem();
+        String khoa = (String) cbxKhoa.getSelectedItem();
+        int soLuong = Integer.parseInt(txtSLD.getText() + "");
+        double giaTien = Double.parseDouble(lbGiaTien.getText() + "");
+        DonHang dhn = new DonHang("D" + String.valueOf(i), labelUser.getText(), tenLop, tenKhoa, loaiSP, size, khoa, soLuong, giaTien);
+        dsDH.add(dhn);
+        LoadTable();
+        TongTien();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void cbxLoaiSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLoaiSPItemStateChanged
+        // TODO add your handling code here:
+        double giaTien = 0;
+        switch (cbxLoaiSP.getSelectedIndex()) {
+            case 0:
+                giaTien = 100000;
+                break;
+            case 1:
+                giaTien = 110000;
+                break;
+            case 2:
+                giaTien = 120000;
+                break;
+            default:
+                giaTien = 100000;
+        }
+        lbGiaTien.setText(String.valueOf(giaTien));
+    }//GEN-LAST:event_cbxLoaiSPItemStateChanged
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        chonDong = tableDH.getSelectedRow();
+        if (chonDong != -1) {
+            dh = dsDH.get(chonDong);
+            DonHang dnUpdate = new DonHang(dh.maDH);
+            dnUpdate.setUserName(labelUser.getText());
+            dnUpdate.setTenLop(txtTenLop.getText() + "");
+            dnUpdate.setTenKhoa(txtKhoa.getText());
+            dnUpdate.setSoLuongDat(Integer.parseInt(txtSLD.getText()));
+            dnUpdate.setLoaiSP((String) cbxLoaiSP.getSelectedItem());
+            dnUpdate.setGiaTien(Double.parseDouble(lbGiaTien.getText()));
+            dnUpdate.setKhoa((String) cbxKhoa.getSelectedItem());
+            dnUpdate.setSize((String) cbxsize.getSelectedItem());
+            dsDH.set(chonDong, dnUpdate);
+            LoadTable();
+            TongTien();
+        } else {
+            JOptionPane.showMessageDialog(null, "Chua chon dong sua", "Thong bao", 0);
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void tableDHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDHMouseClicked
+        // TODO add your handling code here:
+        chonDong = tableDH.getSelectedRow();
+        if (chonDong != -1) {
+            dh = dsDH.get(chonDong);
+            txtTenLop.setText(dh.tenLop);
+            txtKhoa.setText(dh.tenKhoa);
+            txtSLD.setText(String.valueOf(dh.soLuongDat));
+            cbxLoaiSP.setSelectedItem(dh.LoaiSP);
+            cbxKhoa.setSelectedItem(dh.khoa);
+            cbxsize.setSelectedItem(dh.size);
+        } else {
+            JOptionPane.showMessageDialog(null, "Chua chon dong", "Thong bao", 0);
+        }
+    }//GEN-LAST:event_tableDHMouseClicked
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        chonDong = tableDH.getSelectedRow();
+        if (chonDong != -1) {
+            if (JOptionPane.showConfirmDialog(null, "ban chac muon xoa ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                dsDH.remove(chonDong);
+                LoadTable();
+                TongTien();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Chua chon hang xoa", "Thong bao", 1);
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnRqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRqActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Don hang da duoc gui di", "Thong bao", 1);
+    }//GEN-LAST:event_btnRqActionPerformed
 
     /**
      * @param args the command line arguments
