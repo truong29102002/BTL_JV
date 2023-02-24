@@ -55,7 +55,7 @@ public class Users extends javax.swing.JFrame {
         CbxLoaiSP();
         CbxKhoaH();
         CbxSize();
-        lbGiaTien.setText("100000");
+        lbGiaTien.setText("100000 VND");
         LoadTable();
         TongTien();
     }
@@ -390,7 +390,7 @@ public class Users extends javax.swing.JFrame {
             default:
                 giaTien = 100000;
         }
-        lbGiaTien.setText(String.valueOf(giaTien));
+        lbGiaTien.setText(String.valueOf(giaTien)+ " VND");
     }//GEN-LAST:event_cbxLoaiSPItemStateChanged
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
