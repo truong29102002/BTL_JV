@@ -77,9 +77,8 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnQlDonHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQlDonHActionPerformed
         // TODO add your handling code here:
-        QLDonHang dlDH = new QLDonHang();
-        dlDH.setLocationRelativeTo(null);
-        dlDH.setVisible(true);
+        QuanLyDonHang qlDH = new QuanLyDonHang();
+        qlDH.setVisible(true);
     }//GEN-LAST:event_btnQlDonHActionPerformed
 
     /**

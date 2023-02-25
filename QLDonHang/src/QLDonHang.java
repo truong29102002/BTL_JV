@@ -10,13 +10,13 @@ import java.io.Serializable;
  *
  * @author An Mai
  */
-public class DonHang implements Serializable{
+public class QLDonHang implements Serializable{
     private String maDH,ngayD,tenL,khoa,soDT,tinhT;
     private int khoas;
-    public DonHang() {
+    public QLDonHang() {
     }
 
-    public DonHang(String maDH, String ngayD, String tenL,int khoas, String khoa,String soDT, String tinhT) {
+    public QLDonHang(String maDH, String ngayD, String tenL,int khoas, String khoa,String soDT, String tinhT) {
         this.maDH = maDH;
         this.ngayD = ngayD;
         this.tenL = tenL;

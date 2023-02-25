@@ -7,6 +7,7 @@ package btl_jv;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -97,7 +98,7 @@ public class Users extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("User");
+        setTitle("Đặt hàng");
         setSize(new java.awt.Dimension(1920, 1080));
 
         linkFeedback.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
@@ -137,7 +138,7 @@ public class Users extends javax.swing.JFrame {
 
         jLabel3.setText("Khóa:");
 
-        jLabel5.setText("Loại sp:");
+        jLabel5.setText("Tên sản phẩm:");
 
         jLabel6.setText("Size:");
 
@@ -252,13 +253,12 @@ public class Users extends javax.swing.JFrame {
                             .addComponent(txtTenLop, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGap(116, 116, 116)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbxLoaiSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -365,6 +365,27 @@ public class Users extends javax.swing.JFrame {
         mSp.setVisible(true);
     }//GEN-LAST:event_btnXemMauActionPerformed
 
+    public void setTxtKhoa(JTextField txtKhoa) throws Exception {
+        if (txtKhoa.getText().equals("")) {
+            throw new Exception("Khong duoc trong");
+        }
+        this.txtKhoa = txtKhoa;
+    }
+
+    public void setTxtSLD(JTextField txtSLD) throws Exception {
+        if (txtSLD.getText().equals("")) {
+            throw new Exception("Khong duoc trong");
+        }
+        this.txtSLD = txtSLD;
+    }
+
+    public void setTxtTenLop(JTextField txtTenLop) throws Exception{
+        if(txtTenLop.getText().equals("")){
+            
+        }
+        this.txtTenLop = txtTenLop;
+    }
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         i = ++i;
@@ -454,13 +475,12 @@ public class Users extends javax.swing.JFrame {
 
     private void btnRqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRqActionPerformed
         // TODO add your handling code here:
-        if(dsDH.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Khong co don hang nao trong danh sach","Thong bao", JOptionPane.WARNING_MESSAGE);
-        }
-        else{
+        if (dsDH.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Khong co don hang nao trong danh sach", "Thong bao", JOptionPane.WARNING_MESSAGE);
+        } else {
             JOptionPane.showMessageDialog(null, "Don hang da duoc gui di", "Thong bao", 1);
         }
-        
+
     }//GEN-LAST:event_btnRqActionPerformed
 
     /**
