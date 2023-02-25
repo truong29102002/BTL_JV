@@ -45,7 +45,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Thoat");
+        jButton3.setText("Thoát");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

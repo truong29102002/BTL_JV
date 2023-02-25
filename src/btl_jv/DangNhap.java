@@ -12,18 +12,16 @@ import javax.swing.JOptionPane;
  * @author xuant
  */
 public class DangNhap extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form DangNhap
      */
     ArrayList<TaiKhoan> listTk = new ArrayList<>();
     TaiKhoan checkTK = new TaiKhoan();
-    
+
     public DangNhap() {
         initComponents();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,13 +120,13 @@ public class DangNhap extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Sai mat khau", "Thong bao", JOptionPane.WARNING_MESSAGE);
-                
+
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Khong ton tai tai khoan nay", "Thong bao", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**

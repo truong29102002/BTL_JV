@@ -55,7 +55,7 @@ public class Users extends javax.swing.JFrame {
         CbxLoaiSP();
         CbxKhoaH();
         CbxSize();
-        lbGiaTien.setText("100000 VND");
+        lbGiaTien.setText("100000");
         LoadTable();
         TongTien();
     }
@@ -94,6 +94,7 @@ public class Users extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lbTongTien = new javax.swing.JLabel();
         labelUser = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User");
@@ -207,6 +208,8 @@ public class Users extends javax.swing.JFrame {
         labelUser.setForeground(new java.awt.Color(255, 0, 51));
         labelUser.setText("abc");
 
+        jLabel8.setText("VND");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,8 +261,11 @@ public class Users extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbxLoaiSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(96, 96, 96)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(155, 155, 155)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -287,7 +293,8 @@ public class Users extends javax.swing.JFrame {
                                     .addComponent(Khoa)
                                     .addComponent(txtKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7)
-                                    .addComponent(lbGiaTien)))
+                                    .addComponent(lbGiaTien)
+                                    .addComponent(jLabel8)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +316,7 @@ public class Users extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(txtSLD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -390,7 +397,7 @@ public class Users extends javax.swing.JFrame {
             default:
                 giaTien = 100000;
         }
-        lbGiaTien.setText(String.valueOf(giaTien)+ " VND");
+        lbGiaTien.setText(String.valueOf(giaTien));
     }//GEN-LAST:event_cbxLoaiSPItemStateChanged
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -447,7 +454,13 @@ public class Users extends javax.swing.JFrame {
 
     private void btnRqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRqActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Don hang da duoc gui di", "Thong bao", 1);
+        if(dsDH.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Khong co don hang nao trong danh sach","Thong bao", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Don hang da duoc gui di", "Thong bao", 1);
+        }
+        
     }//GEN-LAST:event_btnRqActionPerformed
 
     /**
@@ -502,6 +515,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel labelUser;
