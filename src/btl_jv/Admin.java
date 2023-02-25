@@ -37,6 +37,11 @@ public class Admin extends javax.swing.JFrame {
         setTitle("Admin");
 
         jButton1.setText("Quản lý sản phẩm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnQlDonH.setText("Quản lý đơn hàng ");
         btnQlDonH.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +51,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         jButton3.setText("Thoát");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,9 +77,9 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(68, 68, 68)
                 .addComponent(btnQlDonH)
-                .addGap(107, 107, 107)
+                .addGap(165, 165, 165)
                 .addComponent(jButton3)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,10 +87,22 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnQlDonHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQlDonHActionPerformed
         // TODO add your handling code here:
-        QLDonHang dlDH = new QLDonHang();
-        dlDH.setLocationRelativeTo(null);
-        dlDH.setVisible(true);
+        QuanLyDonHang qlDH = new QuanLyDonHang();
+        qlDH.setLocationRelativeTo(null);
+        qlDH.setVisible(true);
     }//GEN-LAST:event_btnQlDonHActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        QLSP qlSP = new QLSP();
+        qlSP.setLocationRelativeTo(null);
+        qlSP.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
