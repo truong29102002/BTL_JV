@@ -6,6 +6,8 @@ package btl_jv;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +20,19 @@ public class DangNhap extends javax.swing.JFrame {
      */
     ArrayList<TaiKhoan> listTk = new ArrayList<>();
     TaiKhoan checkTK = new TaiKhoan();
+
+   
+
+    public JTextField getTxtTK() throws Exception{
+        if(txtTK.getText().equals("")){
+            throw new Exception("Tai khoan khong duoc de trong");
+        }
+        return txtTK;
+    }
+
+    public JPasswordField getTxtmk() {
+        return txtmk;
+    }
 
     public DangNhap() {
         initComponents();
@@ -103,6 +118,7 @@ public class DangNhap extends javax.swing.JFrame {
         char[] mk = txtmk.getPassword(); // lấy mk
         String strMk = String.valueOf(mk); // chuyển sang String
         TaiKhoan tk = new TaiKhoan(txtTK.getText().trim(), strMk); // tạo tk mới kiểm tra 
+
         if (listTk.contains(tk)) { // kiem tra tồn tại
             checkTK = listTk.get(listTk.indexOf(tk));
             if ("admin".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
@@ -143,16 +159,24 @@ public class DangNhap extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
