@@ -4,14 +4,19 @@
  */
 package btl_jv;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -22,11 +27,11 @@ public class DatHang extends javax.swing.JFrame {
     /**
      * Creates new form DatHang
      */
-    File fileN;
     ArrayList<DonHang> dsDH = new ArrayList<>();
     int chonDong = -1;
     int i = 0;
     DonHang dh = new DonHang();
+
     void TongTien() {
         double sumTT = 0;
         for (DonHang i : dsDH) {
@@ -63,7 +68,6 @@ public class DatHang extends javax.swing.JFrame {
         lbGiaTien.setText("100000");
         LoadTable();
         TongTien();
-        fileN = new File("DatHang_Excel.xls");
     }
 
     /**
@@ -530,32 +534,43 @@ public class DatHang extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRqActionPerformed
 
-    public void pt_XuatFileExcel(JTable table, File file) {
-        try {
-            FileWriter out = new FileWriter(file);
-// Xuat tieu de bang ra file excel
-            for (int j = 0; j < table.getColumnCount(); j++) {
-                out.write(table.getColumnName(j) + "\t");
-            }
-            out.write("\n");
-// Xuat noi dung bang ra file excel.
-            for (int j = 0; j < 9; j++) {
-                for (int l = 0; l < table.getColumnCount(); l++) {
-                    out.write(table.getValueAt(j, l).toString() + "\t"); // \t de chuyen sang cot moi trong file excel.
-                }
-                out.write("\n"); // \n de xuong dong moi trong file excel.
-            }
-            out.close();
-            JOptionPane.showMessageDialog(null, "Ghi ra file: " + file);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error: " + ex.toString());
+    Workbook workbook = new XSSFWorkbook(); // tạo mới đối tượng đại diện cho excel.
+    Sheet sheet = (Sheet) workbook.createSheet("DatHang"); // tạo 1 đối tượng sheet, đại diện cho sheet bên trong file Excel
+
+    public void pt_XuatFileExcel(JTable table) throws IOException {
+
+        // tạo tên cột 
+        Row headerRow = sheet.createRow(0);
+        for (i = 0; i < table.getColumnCount(); i++) {
+            Cell headerCell = headerRow.createCell(i);
+            headerCell.setCellValue(table.getColumnName(i));
+            // tạo font chữ đận cho tên cột 
+            org.apache.poi.ss.usermodel.Font font = workbook.createFont();
+            font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+            org.apache.poi.ss.usermodel.CellStyle style = workbook.createCellStyle();
+            style.setFont(font);
+            headerCell.setCellStyle(style);
         }
+
+        // thêm dữ liệu trong jtable vào trong file
+        for (i = 0; i < table.getRowCount(); i++) {
+            Row row = sheet.createRow(i + 1);
+            for (int j = 0; j < table.getColumnCount(); j++) {
+                Cell cell = row.createCell(j);
+                cell.setCellValue(table.getValueAt(i, j).toString());
+            }
+        }
+        FileOutputStream fileOut = new FileOutputStream("Dat_Hang.xlsx");
+        workbook.write(fileOut);
+        fileOut.close();
+        JOptionPane.showMessageDialog(null, "Đã xuất ra file: Dat_Hang.xlsx");
     }
     private void btnXuatFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatFileActionPerformed
         // TODO add your handling code here:
         try {
-            pt_XuatFileExcel(tableDH, fileN);
-        } catch (Exception e) {
+            pt_XuatFileExcel(tableDH);
+
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
 

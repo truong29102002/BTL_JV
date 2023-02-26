@@ -5,17 +5,26 @@
 package btl_jv;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import static java.util.Collections.sort;
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -502,29 +511,44 @@ public class QLSP extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(QLSP.this, "Lỗi " + e.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnThemMoiActionPerformed
-    public void pt_XuatFileExcel(JTable table, File file) {
-        try {
-            FileWriter out = new FileWriter(file);
-// Xuat tieu de bang ra file excel
-            for (int i = 0; i < table.getColumnCount(); i++) {
-                out.write(table.getColumnName(i) + "\t");
-            }
-            out.write("\n");
-// Xuat noi dung bang ra file excel.
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < table.getColumnCount(); j++) {
-                    out.write(table.getValueAt(i, j).toString() + "\t"); // \t de chuyen sang cot moi trong file excel.
-                }
-                out.write("\n"); // \n de xuong dong moi trong file excel.
-            }
-            out.close();
-            JOptionPane.showMessageDialog(null, "Ghi ra file " + file);
-        } catch (IOException ex) {
+    Workbook workbook = new XSSFWorkbook(); // tạo mới đối tượng đại diện cho excel.
+    Sheet sheet = (Sheet) workbook.createSheet("SanPham"); // tạo 1 đối tượng sheet, đại diện cho sheet bên trong file Excel
+
+    public void pt_XuatFileExcel(JTable table) throws IOException {
+
+        // tạo tên cột 
+        Row headerRow = sheet.createRow(0);
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            Cell headerCell = headerRow.createCell(i);
+            headerCell.setCellValue(table.getColumnName(i));
+            // tạo font chữ đận cho tên cột 
+            org.apache.poi.ss.usermodel.Font font = workbook.createFont();
+            font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+            org.apache.poi.ss.usermodel.CellStyle style = workbook.createCellStyle();
+            style.setFont(font);
+            headerCell.setCellStyle(style);
         }
+
+        // thêm dữ liệu trong jtable vào trong file
+        for (int i = 0; i < table.getRowCount(); i++) {
+            Row row = sheet.createRow(i + 1);
+            for (int j = 0; j < table.getColumnCount(); j++) {
+                Cell cell = row.createCell(j);
+                cell.setCellValue(table.getValueAt(i, j).toString());
+            }
+        }
+        FileOutputStream fileOut = new FileOutputStream("San_Pham.xlsx");
+        workbook.write(fileOut);
+        fileOut.close();
+        JOptionPane.showMessageDialog(null, "Đã xuất ra file: San_Pham.xlsx");
     }
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        // TODO add your handling code here:
-        pt_XuatFileExcel(tblSP, fileName);
+        try {
+            // TODO add your handling code here:
+            pt_XuatFileExcel(tblSP);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
