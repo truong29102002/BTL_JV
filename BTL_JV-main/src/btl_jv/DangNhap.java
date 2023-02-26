@@ -30,7 +30,10 @@ public class DangNhap extends javax.swing.JFrame {
         return txtTK;
     }
 
-    public JPasswordField getTxtmk() {
+    public JPasswordField getTxtmk() throws Exception{
+        if(txtmk.getPassword().equals("")){
+            throw new Exception("");
+        }
         return txtmk;
     }
 

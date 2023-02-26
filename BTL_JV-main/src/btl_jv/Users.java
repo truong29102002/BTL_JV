@@ -366,41 +366,47 @@ public class Users extends javax.swing.JFrame {
         mSp.setVisible(true);
     }//GEN-LAST:event_btnXemMauActionPerformed
 
-    public void setTxtKhoa(JTextField txtKhoa) throws Exception {
-        if (txtKhoa.getText().equals("")) {
-            throw new Exception("Khong duoc trong");
+    public JTextField getTxtTenLop() throws Exception {
+        if (txtTenLop.getText().equals("")) {
+            throw new Exception("Khong duoc de trong ten");
         }
-        this.txtKhoa = txtKhoa;
+        return txtTenLop;
     }
 
-    public void setTxtSLD(JTextField txtSLD) throws Exception {
-        if (txtSLD.getText().equals("")) {
-            throw new Exception("Khong duoc trong");
+    public JTextField getTxtKhoa() throws Exception{
+        if(txtKhoa.getText().equals("")){
+            throw new Exception("Khong duoc de trong ten khoa");
         }
-        this.txtSLD = txtSLD;
+        return txtKhoa;
     }
 
-    public void setTxtTenLop(JTextField txtTenLop) throws Exception{
-        if(txtTenLop.getText().equals("")){
-            
+    public JTextField getTxtSLD() throws Exception{
+        if(Integer.parseInt(txtSLD.getText()) < 0){
+            throw new Exception("So luong phai > 0");
         }
-        this.txtTenLop = txtTenLop;
+        return txtSLD;
     }
+
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        i = ++i;
-        String tenLop = txtTenLop.getText();
-        String tenKhoa = txtKhoa.getText();
-        String loaiSP = (String) cbxLoaiSP.getSelectedItem();
-        String size = (String) cbxsize.getSelectedItem();
-        String khoa = (String) cbxKhoa.getSelectedItem();
-        int soLuong = Integer.parseInt(txtSLD.getText() + "");
-        double giaTien = Double.parseDouble(lbGiaTien.getText() + "");
-        DonHang dhn = new DonHang("D" + String.valueOf(i), labelUser.getText(), tenLop, tenKhoa, loaiSP, size, khoa, soLuong, giaTien);
-        dsDH.add(dhn);
-        LoadTable();
-        TongTien();
+        try {
+            i = ++i;
+            String tenLop = getTxtTenLop().getText().trim();
+            String tenKhoa = getTxtKhoa().getText().trim();
+            String loaiSP = (String) cbxLoaiSP.getSelectedItem();
+            String size = (String) cbxsize.getSelectedItem();
+            String khoa = (String) cbxKhoa.getSelectedItem();
+            int soLuong = Integer.parseInt(getTxtSLD().getText().trim() + "");
+            double giaTien = Double.parseDouble(lbGiaTien.getText() + "");
+            DonHang dhn = new DonHang("D" + String.valueOf(i), labelUser.getText(), tenLop, tenKhoa, loaiSP, size, khoa, soLuong, giaTien);
+            dsDH.add(dhn);
+            LoadTable();
+            TongTien();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void cbxLoaiSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLoaiSPItemStateChanged
@@ -424,55 +430,70 @@ public class Users extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        chonDong = tableDH.getSelectedRow();
-        if (chonDong != -1) {
-            dh = dsDH.get(chonDong);
-            DonHang dnUpdate = new DonHang();
-            dnUpdate.setMaDH(dh.maDH);
-            dnUpdate.setUserName(labelUser.getText());
-            dnUpdate.setTenLop(txtTenLop.getText() + "");
-            dnUpdate.setTenKhoa(txtKhoa.getText());
-            dnUpdate.setSoLuongDat(Integer.parseInt(txtSLD.getText()));
-            dnUpdate.setLoaiSP((String) cbxLoaiSP.getSelectedItem());
-            dnUpdate.setGiaTien(Double.parseDouble(lbGiaTien.getText()));
-            dnUpdate.setKhoas((String) cbxKhoa.getSelectedItem());
-            dnUpdate.setSize((String) cbxsize.getSelectedItem());
-            dsDH.set(chonDong, dnUpdate);
-            LoadTable();
-            TongTien();
-        } else {
-            JOptionPane.showMessageDialog(null, "Chua chon dong sua", "Thong bao", 0);
+        try {
+            chonDong = tableDH.getSelectedRow();
+            if (chonDong != -1) {
+                dh = dsDH.get(chonDong);
+                DonHang dnUpdate = new DonHang();
+                dnUpdate.setMaDH(dh.maDH);
+                dnUpdate.setUserName(labelUser.getText());
+                dnUpdate.setTenLop(getTxtTenLop().getText() + "");
+                dnUpdate.setTenKhoa(getTxtKhoa().getText());
+                dnUpdate.setSoLuongDat(Integer.parseInt(getTxtSLD().getText()));
+                dnUpdate.setLoaiSP((String) cbxLoaiSP.getSelectedItem());
+                dnUpdate.setGiaTien(Double.parseDouble(lbGiaTien.getText()));
+                dnUpdate.setKhoas((String) cbxKhoa.getSelectedItem());
+                dnUpdate.setSize((String) cbxsize.getSelectedItem());
+                dsDH.set(chonDong, dnUpdate);
+                LoadTable();
+                TongTien();
+            } else {
+                JOptionPane.showMessageDialog(null, "Chua chon dong sua", "Thong bao", 0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void tableDHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDHMouseClicked
         // TODO add your handling code here:
-        chonDong = tableDH.getSelectedRow();
-        if (chonDong != -1) {
-            dh = dsDH.get(chonDong);
-            txtTenLop.setText(dh.tenLop);
-            txtKhoa.setText(dh.tenKhoa);
-            txtSLD.setText(String.valueOf(dh.soLuongDat));
-            cbxLoaiSP.setSelectedItem(dh.LoaiSP);
-            cbxKhoa.setSelectedItem(dh.khoas);
-            cbxsize.setSelectedItem(dh.size);
-        } else {
-            JOptionPane.showMessageDialog(null, "Chua chon dong", "Thong bao", 0);
+        try {
+            chonDong = tableDH.getSelectedRow();
+            if (chonDong != -1) {
+                dh = dsDH.get(chonDong);
+                txtTenLop.setText(dh.tenLop);
+                txtKhoa.setText(dh.tenKhoa);
+                txtSLD.setText(String.valueOf(dh.soLuongDat));
+                cbxLoaiSP.setSelectedItem(dh.LoaiSP);
+                cbxKhoa.setSelectedItem(dh.khoas);
+                cbxsize.setSelectedItem(dh.size);
+            } else {
+                JOptionPane.showMessageDialog(null, "Chua chon dong", "Thong bao", 0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
+
     }//GEN-LAST:event_tableDHMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        chonDong = tableDH.getSelectedRow();
-        if (chonDong != -1) {
-            if (JOptionPane.showConfirmDialog(null, "ban chac muon xoa ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-                dsDH.remove(chonDong);
-                LoadTable();
-                TongTien();
+        try {
+            chonDong = tableDH.getSelectedRow();
+            if (chonDong != -1) {
+                if (JOptionPane.showConfirmDialog(null, "ban chac muon xoa ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                    dsDH.remove(chonDong);
+                    LoadTable();
+                    TongTien();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Chua chon hang xoa", "Thong bao", 1);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Chua chon hang xoa", "Thong bao", 1);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnRqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRqActionPerformed

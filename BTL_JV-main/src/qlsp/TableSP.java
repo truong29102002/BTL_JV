@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package btl_jv;
+package qlsp;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableSP  extends AbstractTableModel{
     private String name[]={"Mã sản phẩm","Tên sản phẩm","Size","Đơn giá","Số lượng còn"};
     private Class classes[]={String.class,String.class,String.class,Double.class,Integer.class};
-    ArrayList<SanPham> dssp=new ArrayList<>();
+    ArrayList<SanPham> dssp=new ArrayList<SanPham>();
 
     public TableSP(ArrayList<SanPham> ds) {
         dssp=ds;

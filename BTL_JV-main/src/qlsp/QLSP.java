@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package btl_jv;
-
+package qlsp;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import static java.util.Collections.sort;
 import java.util.Comparator;
-
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -45,9 +44,9 @@ public class QLSP extends javax.swing.JFrame {
     }
     public void loadTableSP()
     {
-        docFile();
+//        docFile();
         tblSP.setModel(new TableSP(dssp));
-        luuFile();
+//        luuFile();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +92,7 @@ public class QLSP extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        setPreferredSize(new java.awt.Dimension(760, 596));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
@@ -544,7 +544,14 @@ public class QLSP extends javax.swing.JFrame {
             sp=dssp.get(chon);
             txtMaSP.setText(sp.getMaSP()+"");
             txtTenSP.setText(sp.getTenSP()+"");
-            cboSize.setSelectedItem(sp.getSize());
+            if(sp.getSize().equals("S"))
+                cboSize.setSelectedIndex(0);
+            else if(sp.getSize().equals("M"))
+                cboSize.setSelectedIndex(1);
+            else if(sp.getSize().equals("L"))
+                cboSize.setSelectedIndex(2);
+            else if(sp.getSize().equals("XL"))
+                    cboSize.setSelectedIndex(3);
             txtSlcon.setText((sp.getSlCon())+"");
             txtDonGia.setText(sp.getGia()+"");
         }
@@ -586,16 +593,16 @@ public class QLSP extends javax.swing.JFrame {
         {
             @Override
             public int compare(SanPham o1, SanPham o2) {
-                return Double.compare(o1.getGia(), o2.getGia());
+                return -Double.compare(o1.getGia(), o2.getGia());
             }
         };
-        sort(dssp,c2.reversed());
+        sort(dssp,c2);
         loadTableSP();
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void trangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trangChuMouseClicked
         // TODO add your handling code here:
-        new Admin().setVisible(true);
+//        new Admin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_trangChuMouseClicked
 
@@ -634,7 +641,6 @@ public class QLSP extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(QLSP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
