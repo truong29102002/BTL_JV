@@ -37,7 +37,7 @@ public class TableSP  extends AbstractTableModel{
             case 0: return dssp.get(rowIndex).getMaSP();
             case 1: return dssp.get(rowIndex).getTenSP();
             case 2: return dssp.get(rowIndex).getSize();
-            case 3: return dssp.get(rowIndex).getGia();
+            case 3: return dssp.get(rowIndex).getGiaTien();
             case 4: return dssp.get(rowIndex).getSlCon();
             default: return null;
         }

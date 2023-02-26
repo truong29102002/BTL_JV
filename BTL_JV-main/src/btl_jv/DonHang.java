@@ -4,17 +4,17 @@
  */
 package btl_jv;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author xuant
  */
-public class DonHang {
+public class DonHang extends SanPham implements Serializable {
 
-    String maDH, userName, tenLop, tenKhoa, LoaiSP, size,ngayD,soDT,tinhT,khoas;
+    String maDH, userName, tenLop, tenKhoa, ngayD, soDT, tinhT, khoas;
     int soLuongDat;
-    double giaTien;
 
     public DonHang() {
     }
@@ -22,7 +22,8 @@ public class DonHang {
     public DonHang(String maDH) {
         this.maDH = maDH;
     }
-    public DonHang(String maDH,String nguoiD, String ngayD, String tenL,String khoas, String khoa,String soDT,int Sl, String tinhT) {
+
+    public DonHang(String maDH, String nguoiD, String ngayD, String tenL, String khoas, String khoa, String soDT, int Sl, String tinhT) {
         this.maDH = maDH;
         this.ngayD = ngayD;
         this.tenLop = tenL;
@@ -33,13 +34,14 @@ public class DonHang {
         this.userName = nguoiD;
         this.soLuongDat = Sl;
     }
+
     public DonHang(String maDH, String userName, String tenLop, String tenKhoa, String LoaiSP, String size, String khoas, int soLuongDat, double giaTien) {
         this.maDH = maDH;
         this.userName = userName;
         this.tenLop = tenLop;
         this.tenKhoa = tenKhoa;
-        this.LoaiSP = LoaiSP;
-        this.size = size;
+        super.tenSP = LoaiSP;
+        super.size = size;
         this.khoas = khoas;
         this.soLuongDat = soLuongDat;
         this.giaTien = giaTien;
@@ -61,10 +63,17 @@ public class DonHang {
         return tenKhoa;
     }
 
-    public String getLoaiSP() {
-        return LoaiSP;
+    @Override
+    public String getTenSP() {
+        return tenSP;
     }
 
+    @Override
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
+
+    @Override
     public String getSize() {
         return size;
     }
@@ -89,6 +98,7 @@ public class DonHang {
         return khoas;
     }
 
+    @Override
     public double getGiaTien() {
         return giaTien;
     }
@@ -109,10 +119,7 @@ public class DonHang {
         this.tenKhoa = tenKhoa;
     }
 
-    public void setLoaiSP(String LoaiSP) {
-        this.LoaiSP = LoaiSP;
-    }
-
+    @Override
     public void setSize(String size) {
         this.size = size;
     }
@@ -137,6 +144,7 @@ public class DonHang {
         this.khoas = khoas;
     }
 
+    @Override
     public void setGiaTien(double giaTien) {
         this.giaTien = giaTien;
     }
@@ -162,8 +170,6 @@ public class DonHang {
         final DonHang other = (DonHang) obj;
         return Objects.equals(this.maDH, other.maDH);
     }
-
-    
 
     double TongTien() {
         return giaTien * soLuongDat;

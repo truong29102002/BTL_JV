@@ -45,7 +45,7 @@ public class TableDH extends AbstractTableModel {
             case 3:
                 return dsDH.get(rowIndex).getTenKhoa();
             case 4:
-                return dsDH.get(rowIndex).getLoaiSP();
+                return dsDH.get(rowIndex).getTenSP();
             case 5:
                 return dsDH.get(rowIndex).getSize();
             case 6:

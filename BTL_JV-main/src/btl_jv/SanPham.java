@@ -4,7 +4,6 @@
  */
 package btl_jv;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,10 +11,11 @@ import java.util.Objects;
  *
  * @author HNC
  */
-public class SanPham implements Serializable{
-    private String maSP,tenSP,size;
-    private int slCon;
-    private double gia;
+public class SanPham implements Serializable {
+
+    String maSP, tenSP, size;
+    int slCon;
+    double giaTien;
 
     public SanPham() {
     }
@@ -24,73 +24,52 @@ public class SanPham implements Serializable{
         this.maSP = maSP;
     }
 
-    public SanPham(String maSP, String tenSP, String size, int slCon, double gia) {
-        
-        try{this.maSP = maSP;
+    public SanPham(String maSP, String tenSP, String size, int slCon, double giaTien) {
+        this.maSP = maSP;
         this.tenSP = tenSP;
         this.size = size;
         this.slCon = slCon;
-        this.gia = gia;
-        }
-        catch(Exception e)
-        {
-            System.out.println("Lỗi "+e.toString());
-        }
+        this.giaTien = giaTien;
     }
 
     public String getMaSP() {
         return maSP;
     }
 
-    public void setMaSP(String maSP) throws Exception{
-        if(maSP.trim().equals(""))
-            throw new Exception("Mã sản phẩm không được để trống!");
-        else 
+    public void setMaSP(String maSP) {
         this.maSP = maSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setSlCon(int slCon) {
+        this.slCon = slCon;
+    }
+
+    public void setGiaTien(double giaTien) {
+        this.giaTien = giaTien;
     }
 
     public String getTenSP() {
         return tenSP;
     }
 
-    public void setTenSP(String tenSP) throws Exception  {
-        if(tenSP.trim().equals(""))
-            throw new Exception("Tên sản  phẩm không được để trống!");
-        else
-        this.tenSP = tenSP;
-    }
-
     public String getSize() {
         return size;
-    }
-
-    public void setSize(String size) throws Exception {
-        if(size.trim().equals(""))
-            throw new Exception("Size không được để trống!");
-        else
-        this.size = size;
     }
 
     public int getSlCon() {
         return slCon;
     }
 
-    public void setSlCon(int slCon) throws Exception {
-        if(slCon<0)
-            throw new Exception("Số lượng còn phải là số nguyên không âm!");
-        else
-        this.slCon = slCon;
-    }
-
-    public double getGia() {
-        return gia;
-    }
-
-    public void setGia(double gia) throws Exception {
-        if(gia<0)
-            throw new Exception("Giá phải >0");
-        else
-        this.gia = gia;
+    public double getGiaTien() {
+        return giaTien;
     }
 
     @Override
@@ -114,6 +93,5 @@ public class SanPham implements Serializable{
         final SanPham other = (SanPham) obj;
         return Objects.equals(this.maSP, other.maSP);
     }
-    
-    
+
 }

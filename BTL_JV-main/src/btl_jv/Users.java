@@ -440,7 +440,7 @@ public class Users extends javax.swing.JFrame {
                 dnUpdate.setTenLop(getTxtTenLop().getText() + "");
                 dnUpdate.setTenKhoa(getTxtKhoa().getText());
                 dnUpdate.setSoLuongDat(Integer.parseInt(getTxtSLD().getText()));
-                dnUpdate.setLoaiSP((String) cbxLoaiSP.getSelectedItem());
+                dnUpdate.setTenSP((String) cbxLoaiSP.getSelectedItem());
                 dnUpdate.setGiaTien(Double.parseDouble(lbGiaTien.getText()));
                 dnUpdate.setKhoas((String) cbxKhoa.getSelectedItem());
                 dnUpdate.setSize((String) cbxsize.getSelectedItem());
@@ -465,7 +465,7 @@ public class Users extends javax.swing.JFrame {
                 txtTenLop.setText(dh.tenLop);
                 txtKhoa.setText(dh.tenKhoa);
                 txtSLD.setText(String.valueOf(dh.soLuongDat));
-                cbxLoaiSP.setSelectedItem(dh.LoaiSP);
+                cbxLoaiSP.setSelectedItem(dh.tenSP);
                 cbxKhoa.setSelectedItem(dh.khoas);
                 cbxsize.setSelectedItem(dh.size);
             } else {
