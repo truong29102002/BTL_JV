@@ -91,46 +91,6 @@ public class QuanLyDonHang extends javax.swing.JFrame {
         txtSLD.setText("");
         txtTT.setText("");
     }
-    ArrayList<DonHang> dsDHHT = new ArrayList<>();
-
-    public void find_HT() {
-
-        for (DonHang s : dsDH) {
-            if (s.getTinhT().equals("Đã hoàn thành")) {
-                if (!dsDHHT.contains(s)) {
-                    dsDHHT.add(s);
-                    TableDH.setModel(new TableDonHang(dsDHHT));
-                }
-
-            }
-        }
-    }
-    ArrayList<DonHang> dsDHC = new ArrayList<>();
-
-    public void find_C() {
-
-        for (DonHang s : dsDH) {
-            if (s.getTinhT().equals("Chờ xác nhận")) {
-                if (!dsDHC.contains(s)) {
-                    dsDHC.add(s);
-                    TableDH.setModel(new TableDonHang(dsDHC));
-                }
-            } else {
-                dsDHC.remove(s);
-                TableDH.setModel(new TableDonHang(dsDHC));
-            }
-        }
-    }
-
-    public void sua_TT() {
-        for (DonHang s : dsDH) {
-            if (s.getTinhT().equals("Chờ xác nhận")) {
-                s.setTinhT("Đã hoàn thành");
-
-            }
-        }
-
-    }
 
     public void loadTableHoaDon() {
         TableDH.setModel(new TableDonHang(dsDH));
@@ -466,11 +426,41 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
     private void BtnDHCho(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDHCho
         // TODO add your handling code here:
-        find_C();
+        ArrayList<DonHang> dsDHC = new ArrayList<>();
+        for (DonHang s : dsDH) {
+            if (s.getTinhT().equals("Chờ xác nhận")) {
+                if (!dsDHC.contains(s)) {
+                    dsDHC.add(s);
+                    TableDH.setModel(new TableDonHang(dsDHC));
+                }
+            } else {
+                dsDHC.remove(s);
+                TableDH.setModel(new TableDonHang(dsDHC));
+            }
+        }
     }//GEN-LAST:event_BtnDHCho
 
     private void btnDHHoanThanh(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDHHoanThanh
-        find_HT();
+        ArrayList<DonHang> dsDHHT = new ArrayList<>();
+        for (DonHang s : dsDH) {
+            if (s.getTinhT().equals("Đã hoàn thành")) {
+                if (!dsDHHT.contains(s)) {
+                    dsDHHT.add(s);
+                    TableDH.setModel(new TableDonHang(dsDHHT));
+                }
+
+            }
+        }
+    }
+    
+
+    public void sua_TT() {
+        for (DonHang s : dsDH) {
+            if (s.getTinhT().equals("Chờ xác nhận")) {
+                s.setTinhT("Đã hoàn thành");
+
+            }
+        }
     }//GEN-LAST:event_btnDHHoanThanh
 
     private void BtnXoaDH(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXoaDH

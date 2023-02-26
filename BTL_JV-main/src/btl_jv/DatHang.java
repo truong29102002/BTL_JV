@@ -27,7 +27,6 @@ public class DatHang extends javax.swing.JFrame {
     int chonDong = -1;
     int i = 0;
     DonHang dh = new DonHang();
-
     void TongTien() {
         double sumTT = 0;
         for (DonHang i : dsDH) {
