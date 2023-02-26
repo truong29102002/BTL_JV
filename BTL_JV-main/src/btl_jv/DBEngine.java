@@ -4,7 +4,6 @@
  */
 package btl_jv;
 
-import qlsp.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -12,26 +11,23 @@ import java.io.ObjectOutputStream;
 
 /**
  *
- * @author HNC
+ * @author An Mai
  */
 public class DBEngine {
-    public void LuuFile(String fileName, Object obj) throws Exception
-    {
-        FileOutputStream fo=new FileOutputStream(fileName);
-        ObjectOutputStream oos=new ObjectOutputStream(fo);
-        oos.writeObject(obj);
-        oos.flush();
-        oos.close();
-        fo.close();
+    public void luuFile(String fileName, Object obj) throws Exception{
+        FileOutputStream fs = new FileOutputStream(fileName);
+        ObjectOutputStream os = new ObjectOutputStream(fs);
+        os.writeObject(obj);
+        os.close();
+        fs.close();
     }
-    public Object DocFile(String fileName) throws Exception
-    {
-        Object kq=null;
-        FileInputStream fi=new FileInputStream(fileName);
-        ObjectInputStream ois=new ObjectInputStream(fi);
-        kq=(Object)ois.readObject();
-        ois.close();
+    public Object docFile(String fileName)throws Exception{
+        Object kq = null;
+        FileInputStream fi = new FileInputStream(fileName);
+        ObjectInputStream ois = new ObjectInputStream(fi);
+        kq = ois.readObject();
         fi.close();
+        ois.close();
         return kq;
     }
 }

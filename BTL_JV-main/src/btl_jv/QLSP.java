@@ -423,7 +423,7 @@ public class QLSP extends javax.swing.JFrame {
     public void luuFile()
     {
         try{
-            db.LuuFile(fName, dssp);
+            db.luuFile(fName, dssp);
         }
         catch(Exception ex)
         {
@@ -433,7 +433,7 @@ public class QLSP extends javax.swing.JFrame {
     public void docFile()
     {
         try{
-            dssp=(ArrayList)db.DocFile(fName);
+            dssp=(ArrayList)db.docFile(fName);
         }catch(Exception e)
         {
             System.out.println("Có lỗi: "+e.toString());

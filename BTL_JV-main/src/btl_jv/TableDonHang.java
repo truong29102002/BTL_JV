@@ -15,9 +15,9 @@ import javax.swing.table.AbstractTableModel;
  * @author An Mai
  */
 public class TableDonHang extends AbstractTableModel implements Serializable{
-    private String name[] = {"Mã đơn hàng","Người đặt","Ngày đặt","Tên lớp","Khoa","Khóa","Số điện thoại","Tình trạng"};
+    private String name[] = {"Mã đơn hàng","Người đặt","Ngày đặt","Tên lớp","Khoa","Khóa","Số điện thoại","Số lượng đặt","Tình trạng"};
     
-    private Class classes[] = {String.class,String.class,String.class,String.class,String.class,Integer.class,String.class,String.class};
+    private Class classes[] = {String.class,String.class,String.class,String.class,String.class,Integer.class,String.class,Integer.class,String.class};
    
     ArrayList<DonHang> dsDH = new ArrayList<DonHang>();
 
@@ -49,8 +49,9 @@ public class TableDonHang extends AbstractTableModel implements Serializable{
             case 3: return dsDH.get(rowIndex).getTenLop();    
             case 4: return dsDH.get(rowIndex).getTenKhoa();      
             case 5: return dsDH.get(rowIndex).getKhoas();
-            case 6: return dsDH.get(rowIndex).getSoDT();     
-            case 7: return dsDH.get(rowIndex).getTinhT();
+            case 6: return dsDH.get(rowIndex).getSoDT();
+            case 7: return dsDH.get(rowIndex).getSoLuongDat();
+            case 8: return dsDH.get(rowIndex).getTinhT();
             default : return null;
         }
     }

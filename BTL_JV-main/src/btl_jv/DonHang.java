@@ -22,7 +22,7 @@ public class DonHang {
     public DonHang(String maDH) {
         this.maDH = maDH;
     }
-    public DonHang(String maDH,String nguoiD, String ngayD, String tenL,String khoas, String khoa,String soDT, String tinhT) {
+    public DonHang(String maDH,String nguoiD, String ngayD, String tenL,String khoas, String khoa,String soDT,int Sl, String tinhT) {
         this.maDH = maDH;
         this.ngayD = ngayD;
         this.tenLop = tenL;
@@ -31,6 +31,7 @@ public class DonHang {
         this.tinhT = tinhT;
         this.khoas = khoas;
         this.userName = nguoiD;
+        this.soLuongDat = Sl;
     }
     public DonHang(String maDH, String userName, String tenLop, String tenKhoa, String LoaiSP, String size, String khoas, int soLuongDat, double giaTien) {
         this.maDH = maDH;
@@ -138,6 +139,28 @@ public class DonHang {
 
     public void setGiaTien(double giaTien) {
         this.giaTien = giaTien;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.maDH);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DonHang other = (DonHang) obj;
+        return Objects.equals(this.maDH, other.maDH);
     }
 
     

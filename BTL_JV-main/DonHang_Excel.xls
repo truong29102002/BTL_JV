@@ -1,7 +1,7 @@
-Mã đơn hàng	Người đặt	Ngày đặt	Tên lớp	Khoa	Khóa	Số điện thoại	Tình trạng	
-DH01	Nguyễn Thị Loan	20/11/2020	KHMT01	Công nghệ thông tin	K14	0974536278	Đã hoàn thành	
-DH02	Vũ Văn Thuấn	25/09/2019	HTTT02	Công nghệ thông tin	K15	0987536278	Đã hoàn thành	
-DH03	Hoàng Thị Huệ	10/03/2018	CNTT01	Công nghệ thông tin	K13	0974536438	Đã hoàn thành	
-DH04	Nguyễn Tuấn Tú	15/12/2019	KTPM01	Công nghệ thông tin	K14	0973236278	Đã hoàn thành	
-DH05	Trần Văn Cảnh	08/12/2020	CK1	Cơ khí	K13	0932236278	Đã hoàn thành	
-DH07	Nguyễn Thị Anh	28/10/2020	QTKS1	Quản lý knh doanh	K15	0921236438	Đã hoàn thành	
+Mã đơn hàng	Người đặt	Ngày đặt	Tên lớp	Khoa	Khóa	Số điện thoại	Số lượng đặt	Tình trạng	
+DH01	Nguyễn Thị Loan	20/11/2020	KHMT01	Công nghệ thông tin	K14	0974536278	53	Đã hoàn thành	
+DH02	Vũ Văn Thuấn	25/09/2019	HTTT02	Công nghệ thông tin	K15	0987536278	75	Đã hoàn thành	
+DH03	Hoàng Thị Huệ	10/03/2018	CNTT01	Công nghệ thông tin	K13	0974536438	64	Đã hoàn thành	
+DH04	Nguyễn Tuấn Tú	15/12/2019	KTPM01	Công nghệ thông tin	K17	0973236278	30	Đã hoàn thành	
+DH05	Trần Văn Cảnh	08/12/2020	CK1	Cơ khí	K13	0932236278	25	Đã hoàn thành	
+DH06	Vũ Tuyết Dung	04/11/2018	DT1	Điện tử	K14	0921236278	42	Đã hoàn thành	
