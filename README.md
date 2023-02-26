@@ -4,7 +4,7 @@
 - FeedBack
 - Xem sản phẩm
 - Đặt hàng
-# Adimin
+# Admin
 - đăng nhập
 - quản lý tài khoản
 - quản lý sản phẩm

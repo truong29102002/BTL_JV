@@ -86,6 +86,11 @@ public class QLTK_Jframe extends javax.swing.JFrame {
         jLabel5.setText("Email");
 
         butxoa.setText("Xoá");
+        butxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butxoaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Phu trach:");
 
@@ -236,6 +241,20 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void butxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butxoaActionPerformed
+        // TODO add your handling code here:
+        int row= tableTK.getSelectedRow();
+        if(row ==-1)
+            JOptionPane.showMessageDialog(this, " vui long chon tai khoan can xoa","Thong bao",JOptionPane.ERROR_MESSAGE);
+        else{
+            int confirm =JOptionPane.showConfirmDialog(this,"Ban chac chan muon xoa ?","Xac nhan",JOptionPane.YES_NO_OPTION);
+            if(confirm == JOptionPane.YES_OPTION){
+                dstk.remove(row);
+                loadtable();
+            }
+        }
+    }//GEN-LAST:event_butxoaActionPerformed
 
     /**
      * @param args the command line arguments
