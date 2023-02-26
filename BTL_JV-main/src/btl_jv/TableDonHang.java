@@ -19,7 +19,7 @@ public class TableDonHang extends AbstractTableModel implements Serializable{
     
     private Class classes[] = {String.class,String.class,String.class,String.class,String.class,Integer.class,String.class,Integer.class,String.class};
    
-    ArrayList<DonHang> dsDH = new ArrayList<DonHang>();
+    ArrayList<DonHang> dsDH = new ArrayList<>();
 
 
     public TableDonHang(ArrayList<DonHang> dh) {

@@ -28,7 +28,6 @@ public class QuanLyDonHang extends javax.swing.JFrame {
     DBEngine db = new DBEngine();
     ArrayList<DonHang> dsDH = new ArrayList<>();
     File fileName;
-//    DBEngine db = new DBEngine();
     int dongChon = -1;//Dòng chọn bảng hóa đơn
     DonHang dh = new DonHang();
 
@@ -98,8 +97,11 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
         for (DonHang s : dsDH) {
             if (s.getTinhT().equals("Đã hoàn thành")) {
-                dsDHHT.add(s);
-                TableDH.setModel(new TableDonHang(dsDHHT));
+                if (!dsDHHT.contains(s)) {
+                    dsDHHT.add(s);
+                    TableDH.setModel(new TableDonHang(dsDHHT));
+                }
+
             }
         }
     }
@@ -109,8 +111,10 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
         for (DonHang s : dsDH) {
             if (s.getTinhT().equals("Chờ xác nhận")) {
-                dsDHC.add(s);
-                TableDH.setModel(new TableDonHang(dsDHC));
+                if (!dsDHC.contains(s)) {
+                    dsDHC.add(s);
+                    TableDH.setModel(new TableDonHang(dsDHC));
+                }
             } else {
                 dsDHC.remove(s);
                 TableDH.setModel(new TableDonHang(dsDHC));

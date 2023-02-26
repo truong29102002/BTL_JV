@@ -40,22 +40,23 @@ public class QLSP extends javax.swing.JFrame {
 
     public QLSP() {
         initComponents();
+        docFile();
         cbxSize();
-        dssp.add(new SanPham("SP01", "Quần áo thể dục", "M", 150, 140000));
-        dssp.add(new SanPham("SP02", "Áo khoác đồng phục", "S", 100, 170000));
-        dssp.add(new SanPham("SP03", "Đồng phục thực hành", "XL", 53, 18000));
-        dssp.add(new SanPham("SP04", "Áo khoác đồng phục", "XL", 120, 17000));
-        dssp.add(new SanPham("SP05", "Quần áo thể dục", "S", 53, 140000));
-        dssp.add(new SanPham("SP06", "Đồng phục thực hành", "XL", 73, 18000));
+//        dssp.add(new SanPham("SP01", "Quần áo thể dục", "M", 150, 140000));
+//        dssp.add(new SanPham("SP02", "Áo khoác đồng phục", "S", 100, 170000));
+//        dssp.add(new SanPham("SP03", "Đồng phục thực hành", "XL", 53, 18000));
+//        dssp.add(new SanPham("SP04", "Áo khoác đồng phục", "XL", 120, 17000));
+//        dssp.add(new SanPham("SP05", "Quần áo thể dục", "S", 53, 140000));
+//        dssp.add(new SanPham("SP06", "Đồng phục thực hành", "XL", 73, 18000));
 
         tblSP.setModel(new TableSP(dssp));
 
     }
 
     public void loadTableSP() {
-//        docFile();
+        docFile();
         tblSP.setModel(new TableSP(dssp));
-//        luuFile();
+        luuFile();
     }
 
     /**

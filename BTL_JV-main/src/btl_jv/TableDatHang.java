@@ -61,7 +61,7 @@ public class TableDatHang extends AbstractTableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
+    public Class getColumnClass(int columnIndex) {
         return cl[columnIndex];
 //        return super.getColumnClass(columnIndex); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
