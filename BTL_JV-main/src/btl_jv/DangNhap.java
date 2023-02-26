@@ -131,7 +131,7 @@ public class DangNhap extends javax.swing.JFrame {
 //                this.setVisible(false);
                 this.dispose();
             } else if ("user".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
-                Users us = new Users();
+                DatHang us = new DatHang();
                 us.setLocationRelativeTo(null);
                 us.labelUser.setText(txtTK.getText());
                 us.setVisible(true);

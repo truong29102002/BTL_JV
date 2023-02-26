@@ -20,8 +20,8 @@ public class QLTK_Jframe extends javax.swing.JFrame {
      */
     int i = 0;
     public void fakeData(){
-        QLTK a1= new QLTK("1", "Admin", "admin","Ha Noi","admin@gmail.com", 123456789, "admin", "admin", "user");
-        QLTK a2= new QLTK("2", "User", "KTPM1","Ha Noi","user@gmail.com", 123456789, "user", "1234", "user");
+        KhachHang a1= new KhachHang("1", "Admin", "admin","Ha Noi","admin@gmail.com", 123456789, "admin", "admin", "user");
+        KhachHang a2= new KhachHang("2", "User", "KTPM1","Ha Noi","user@gmail.com", 123456789, "user", "1234", "user");
         dstk.add(a1);
         dstk.add(a2);
     }
@@ -31,8 +31,8 @@ public class QLTK_Jframe extends javax.swing.JFrame {
         loadtable();
     }
     int dongchon = -1;
-    ArrayList<QLTK> dstk = new ArrayList<QLTK>();
-    QLTK tk = new QLTK();
+    ArrayList<KhachHang> dstk = new ArrayList<KhachHang>();
+    KhachHang tk = new KhachHang();
 
     public void loadtable() {
         tableTK.setModel(new TableTK(dstk));
@@ -123,6 +123,11 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             }
         ));
         tableTK.setCellSelectionEnabled(true);
+        tableTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTKMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableTK);
 
         jLabel4.setText("Sđt");
@@ -224,7 +229,7 @@ public class QLTK_Jframe extends javax.swing.JFrame {
         int sdt = Integer.parseInt(getTxtsdt().getText());
         String userName = getTxttk().getText();
         String passWord = getTxtmk().getText();
-        tk = new QLTK(String.valueOf(i), hoTen, phuTrach, diaChi, email, sdt, userName, passWord, "user");
+        tk = new KhachHang(String.valueOf(i), hoTen, phuTrach, diaChi, email, sdt, userName, passWord, "user");
         dstk.add(tk);
         loadtable();
         } catch (Exception e) {
@@ -279,6 +284,21 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_butxoaActionPerformed
+
+    private void tableTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTKMouseClicked
+        // TODO add your handling code here:
+        dongchon = tableTK.getSelectedRow();
+        if(dongchon != -1){
+            tk = dstk.get(dongchon);
+            txtten.setText(tk.hoten);
+            txtid.setText(tk.phutrach);
+            txtemail.setText(tk.email);
+            txtdiachi.setText(tk.diachi);
+            txtsdt.setText(String.valueOf(tk.sdt));
+            txttk.setText(tk.userName);
+            txtmk.setText(tk.passWord);
+        }
+    }//GEN-LAST:event_tableTKMouseClicked
     
     public JTextField getTxtid()throws Exception {
         if(txtid.getText().equals(""))

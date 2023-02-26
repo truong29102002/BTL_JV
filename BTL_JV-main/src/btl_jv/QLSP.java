@@ -101,6 +101,7 @@ public class QLSP extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản lý sản phẩm");
         setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -452,35 +453,35 @@ public class QLSP extends javax.swing.JFrame {
 
     public JTextField getTxtDonGia() throws Exception {
         if (Double.parseDouble(txtDonGia.getText()) < 0) {
-            throw new Exception("Don gia phai > 0");
+            throw new Exception("Đơn giá phải lớn > 0");
         }
         return txtDonGia;
     }
 
     public JTextField getTxtMaSP() throws Exception {
         if (txtMaSP.getText().equals("")) {
-            throw new Exception("Khong duoc trong ma sp");
+            throw new Exception("Không được để trống mã sản phẩm");
         }
         return txtMaSP;
     }
 
     public JTextField getTxtSlcon() throws Exception {
         if (Integer.parseInt(txtSlcon.getText()) < 0) {
-            throw new Exception("So luong con lai >= 0");
+            throw new Exception("Số lượng còn lại >= 0");
         }
         return txtSlcon;
     }
 
     public JTextField getTxtTenSP() throws Exception {
         if (txtTenSP.getText().equals("")) {
-            throw new Exception("Khong duoc trong ten sp");
+            throw new Exception("Không được để trống tên sẩm phẩm");
         }
         return txtTenSP;
     }
 
     public JTextField getTxtTimKiem() throws Exception {
         if (txtTimKiem.getText().equals("")) {
-            throw new Exception("Muon tim kiem phai nhap ten sp");
+            throw new Exception("Muốn tìm phải nhập tên sản phẩm");
         }
         return txtTimKiem;
     }
@@ -603,7 +604,7 @@ public class QLSP extends javax.swing.JFrame {
             }
             tblSP.setModel(new TableSP(dstim));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(QLSP.this, e.toString(), "Loi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(QLSP.this, e.toString(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
@@ -650,7 +651,7 @@ public class QLSP extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn đóng ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn đóng ?", "Thông báo", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
             this.dispose();
         }
     }//GEN-LAST:event_formWindowClosing

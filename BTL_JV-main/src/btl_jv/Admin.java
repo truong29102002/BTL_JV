@@ -33,6 +33,7 @@ public class Admin extends javax.swing.JFrame {
         btnQlDonH = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnUSer = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin");
@@ -65,6 +66,8 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Quản lý phản hồi");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +83,8 @@ public class Admin extends javax.swing.JFrame {
                             .addGap(107, 107, 107)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButton3)
-                                .addComponent(btnUSer)))))
+                                .addComponent(btnUSer)
+                                .addComponent(jButton2)))))
                 .addContainerGap(996, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,9 +96,11 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(btnQlDonH)
                 .addGap(60, 60, 60)
                 .addComponent(btnUSer)
-                .addGap(82, 82, 82)
+                .addGap(57, 57, 57)
+                .addComponent(jButton2)
+                .addGap(80, 80, 80)
                 .addComponent(jButton3)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,6 +171,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton btnQlDonH;
     private javax.swing.JButton btnUSer;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

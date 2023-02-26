@@ -14,9 +14,9 @@ import javax.swing.table.AbstractTableModel;
 public class TableTK extends AbstractTableModel{
     String name[]={"id","ho ten","dia chi","sdt","email","Phu trach","tai khoan"};
     Class classes[]={String.class,String.class,String.class,Integer.class,String.class,String.class,String.class};
-    ArrayList<QLTK> dstk= new ArrayList<>();
+    ArrayList<KhachHang> dstk= new ArrayList<>();
 
-    public TableTK(ArrayList<QLTK> dstk) {
+    public TableTK(ArrayList<KhachHang> dstk) {
         this.dstk = dstk;
     }
     @Override

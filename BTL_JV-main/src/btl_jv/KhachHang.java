@@ -10,15 +10,15 @@ import java.util.Objects;
  *
  * @author Administrator
  */
-public class QLTK extends TaiKhoan{
+public class KhachHang extends TaiKhoan{
     String id,hoten,phutrach,diachi,email;
     int sdt;
     
-    public QLTK() {
+    public KhachHang() {
         
     }
 
-    public QLTK(String id, String hoten, String phutrach, String diachi, String email, int sdt, String userName, String passWord, String quyen) {
+    public KhachHang(String id, String hoten, String phutrach, String diachi, String email, int sdt, String userName, String passWord, String quyen) {
         super(userName, passWord, quyen);
         this.id = id;
         this.hoten = hoten;
@@ -96,7 +96,7 @@ public class QLTK extends TaiKhoan{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final QLTK other = (QLTK) obj;
+        final KhachHang other = (KhachHang) obj;
         return Objects.equals(this.id, other.id);
     }
 

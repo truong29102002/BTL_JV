@@ -11,13 +11,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author xuant
  */
-public class TableDH extends AbstractTableModel {
+public class TableDatHang extends AbstractTableModel {
 
     String nameCol[] = {"Mã Đơn", "Người Đặt", "Lớp", "Khoa", "Tên Sản Phẩm", "Size", "Khóa", "Số lượng", "Thành Tiền"};
     Class cl[] = {String.class, String.class, String.class, String.class, String.class, String.class, String.class, Integer.class, Double.class};
     ArrayList<DonHang> dsDH = new ArrayList<>();
 
-    public TableDH(ArrayList<DonHang> dsD) {
+    public TableDatHang(ArrayList<DonHang> dsD) {
         dsDH = dsD;
     }
 
