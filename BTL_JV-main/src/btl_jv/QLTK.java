@@ -26,8 +26,9 @@ public class QLTK extends TaiKhoan{
         this.diachi = diachi;
         this.email = email;
         this.sdt = sdt;
+        
     }
-
+    
     public void setId(String id) {
         this.id = id;
     }
@@ -75,6 +76,7 @@ public class QLTK extends TaiKhoan{
     public int getSdt() {
         return sdt;
     }
+
 
     @Override
     public int hashCode() {

@@ -7,6 +7,7 @@ package btl_jv;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,9 +19,15 @@ public class QLTK_Jframe extends javax.swing.JFrame {
      * Creates new form QLTK_Jframe
      */
     int i = 0;
-
+    public void fakeData(){
+        QLTK a1= new QLTK("1", "Admin", "admin","Ha Noi","admin@gmail.com", 123456789, "admin", "admin", "user");
+        QLTK a2= new QLTK("2", "User", "KTPM1","Ha Noi","user@gmail.com", 123456789, "user", "1234", "user");
+        dstk.add(a1);
+        dstk.add(a2);
+    }
     public QLTK_Jframe() {
         initComponents();
+        fakeData();
         loadtable();
     }
     int dongchon = -1;
@@ -40,6 +47,10 @@ public class QLTK_Jframe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         butthem = new javax.swing.JButton();
         butsua = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -111,6 +122,7 @@ public class QLTK_Jframe extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableTK.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(tableTK);
 
         jLabel4.setText("Sđt");
@@ -137,23 +149,25 @@ public class QLTK_Jframe extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addGap(37, 37, 37)
+                        .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtsdt, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                             .addComponent(txtemail))
-                        .addGap(78, 78, 78)
+                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addGap(32, 32, 32)
-                                .addComponent(txtmk))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtmk)
+                                .addGap(14, 14, 14))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txttk, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(txttk, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE)))
+                        .addGap(0, 37, Short.MAX_VALUE)))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(butthem)
@@ -184,7 +198,7 @@ public class QLTK_Jframe extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtdiachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -201,37 +215,47 @@ public class QLTK_Jframe extends javax.swing.JFrame {
 
     private void butthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butthemActionPerformed
         // TODO add your handling code here:
-        i = ++i;
-        String hoTen = txtten.getText();
-        String phuTrach = txtid.getText();
-        String diaChi = txtdiachi.getText();
-        String email = txtemail.getText();
-        int sdt = Integer.parseInt(txtsdt.getText());
-        String userName = txttk.getText();
-        String passWord = txtmk.getText();
+        try {
+            i = ++i;
+        String hoTen = getTxtten().getText();
+        String phuTrach = getTxtid().getText();
+        String diaChi = getTxtdiachi().getText();
+        String email = getTxtemail().getText();
+        int sdt = Integer.parseInt(getTxtsdt().getText());
+        String userName = getTxttk().getText();
+        String passWord = getTxtmk().getText();
         tk = new QLTK(String.valueOf(i), hoTen, phuTrach, diaChi, email, sdt, userName, passWord, "user");
         dstk.add(tk);
         loadtable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
+        
     }//GEN-LAST:event_butthemActionPerformed
 
     private void butsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butsuaActionPerformed
         // TODO add your handling code here:
         dongchon = tableTK.getSelectedRow();
         if (dongchon != -1) {
+        try {
             tk = dstk.get(dongchon);
-            QLTK tks = new QLTK();
-            tks.setId(tk.id);
-            tks.setHoten(txtten.getText() + "");
-            tks.setHoten(txtten.getText() + "");
-            tks.setDiachi(txtdiachi.getText() + "");
-            tks.setEmail(txtemail.getText() + "");
-            tks.setSdt(Integer.parseInt(txtsdt.getText()));
-            tks.setPhutrach(txtid.getText());
-            tks.setUserName(txttk.getText());
-            tks.setPassWord(txtmk.getText());
-            dstk.set(dongchon, tks);
+            tk.setId(tk.id);
+            tk.setHoten(getTxtten().getText() + "");
+            tk.setDiachi(getTxtdiachi().getText() + "");
+            tk.setEmail(getTxtemail().getText() + "");
+            tk.setSdt(Integer.parseInt(getTxtsdt().getText()));
+            tk.setPhutrach(getTxtid().getText()+"");
+            tk.setUserName(getTxttk().getText()+"");
+            tk.setPassWord(getTxtmk().getText()+"");
+            dstk.set(dongchon, tk);
+            JOptionPane.showMessageDialog(this, "Sua thanh cong","Thong bao",JOptionPane.WIDTH);
             loadtable();
+        
+        } catch (Exception e) {
+               JOptionPane.showMessageDialog(this, e.toString());
         }
+        }
+        
     }//GEN-LAST:event_butsuaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -255,7 +279,48 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_butxoaActionPerformed
+    
+    public JTextField getTxtid()throws Exception {
+        if(txtid.getText().equals(""))
+            throw new Exception("ko duoc de trong phu trach!");
+        return txtid;
+    }
+    
+    public JTextField getTxtdiachi() throws Exception{
+        if(txtdiachi.getText().equals(""))
+            throw new Exception("ko duoc de trong dia chi!");
+        return txtdiachi;
+    }
 
+    public JTextField getTxtemail()throws Exception {
+        if(txtemail.getText().equals(""))
+            throw new Exception("ko duoc de trong email!");
+        return txtemail;
+    }
+
+    public JTextField getTxtmk()throws Exception {
+        if(txtmk.getText().equals(""))
+            throw new Exception("ko duoc de trong mat khau!");
+        return txtmk;
+    }
+
+    public JTextField getTxtsdt() throws Exception {
+        if(txtsdt.getText().equals(""))
+            throw new Exception("ko duoc de trong sdt!");
+        return txtsdt;
+    }
+
+    public JTextField getTxtten() throws Exception{
+        if(txtten.getText().equals(""))
+            throw new Exception("ko duoc de trong ten!");
+        return txtten;
+    }
+
+    public JTextField getTxttk() throws Exception{
+        if(txttk.getText().equals(""))
+            throw new Exception("ko duoc de trong userName!");
+        return txttk;
+    }
     /**
      * @param args the command line arguments
      */
@@ -294,6 +359,10 @@ public class QLTK_Jframe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butsua;
     private javax.swing.JButton butthem;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton butxoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

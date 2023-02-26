@@ -43,7 +43,7 @@ public class TableTK extends AbstractTableModel{
             default: return null;
         }
     }
-
+    
     @Override
     public Class getColumnClass(int columnIndex) {
         return classes[columnIndex]; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
