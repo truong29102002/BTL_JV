@@ -1,10 +1,10 @@
-package QLPhanHoi;
+package btl_jv;
 
 
 
 
-import QLPhanHoi.QLPH;
-import QLPhanHoi.DBEngine;
+import btl_jv.QLPH;
+import btl_jv.DBEngine;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import static java.awt.image.ImageObserver.WIDTH;
