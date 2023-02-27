@@ -51,7 +51,7 @@ public class TableDonHang extends AbstractTableModel implements Serializable{
             case 5: return dsDH.get(rowIndex).getKhoas();
             case 6: return dsDH.get(rowIndex).getSoDT();
             case 7: return dsDH.get(rowIndex).getSoLuongDat();
-            case 8: return dsDH.get(rowIndex).TinhT();
+            case 8: return dsDH.get(rowIndex).getTinhT();
             default : return null;
         }
     }

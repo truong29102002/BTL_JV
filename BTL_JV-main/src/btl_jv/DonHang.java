@@ -14,9 +14,9 @@ import java.util.Objects;
  */
 public class DonHang extends SanPham implements Serializable {
 
-    String maDH, userName, tenLop, tenKhoa, ngayD, soDT, khoas;
-    int soLuongDat, tinhT;
-    
+    String maDH, userName, tenLop, tenKhoa, ngayD, soDT, tinhT, khoas;
+    int soLuongDat;
+
     public DonHang() {
     }
 
@@ -24,7 +24,7 @@ public class DonHang extends SanPham implements Serializable {
         this.maDH = maDH;
     }
 
-    public DonHang(String maDH, String nguoiD, String ngayD, String tenL, String khoas, String khoa, String soDT, int Sl, int tinhT) {
+    public DonHang(String maDH, String nguoiD, String ngayD, String tenL, String khoas, String khoa, String soDT, int Sl, String tinhT) {
         this.maDH = maDH;
         this.ngayD = ngayD;
         this.tenLop = tenL;
@@ -87,7 +87,7 @@ public class DonHang extends SanPham implements Serializable {
         return soDT;
     }
 
-    public Integer getTinhT() {
+    public String getTinhT() {
         return tinhT;
     }
 
@@ -133,7 +133,7 @@ public class DonHang extends SanPham implements Serializable {
         this.soDT = soDT;
     }
 
-    public void setTinhT(int tinhT) {
+    public void setTinhT(String tinhT) {
         this.tinhT = tinhT;
     }
 
@@ -176,13 +176,6 @@ public class DonHang extends SanPham implements Serializable {
         return giaTien * soLuongDat;
     }
 
-    String TinhT(){
-        if(tinhT == 0){
-            return "Đã hoàn thành";
-        }else{
-        return "Chưa hoàn thành";
-    }
-    }
     @Override
     public String toString() {
         return "DonHang{" + "maDH=" + maDH + ", userName=" + userName + ", tenLop=" + tenLop + ", tenKhoa=" + tenKhoa + ", ngayD=" + ngayD + ", soDT=" + soDT + ", tinhT=" + tinhT + ", khoas=" + khoas + ", soLuongDat=" + soLuongDat + "Gia tien: "+ giaTien+'}';
