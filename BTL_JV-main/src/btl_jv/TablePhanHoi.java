@@ -1,9 +1,9 @@
-package QLPhanHoi;
+package btl_jv;
 
 
 
 
-import QLPhanHoi.QLPH;
+import btl_jv.QLPH;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
