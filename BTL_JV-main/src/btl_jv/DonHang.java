@@ -5,6 +5,7 @@
 package btl_jv;
 
 import java.io.Serializable;
+
 import java.util.Objects;
 
 /**
@@ -13,9 +14,9 @@ import java.util.Objects;
  */
 public class DonHang extends SanPham implements Serializable {
 
-    String maDH, userName, tenLop, tenKhoa, ngayD, soDT, tinhT, khoas;
-    int soLuongDat;
-
+    String maDH, userName, tenLop, tenKhoa, ngayD, soDT, khoas;
+    int soLuongDat, tinhT;
+    
     public DonHang() {
     }
 
@@ -23,7 +24,7 @@ public class DonHang extends SanPham implements Serializable {
         this.maDH = maDH;
     }
 
-    public DonHang(String maDH, String nguoiD, String ngayD, String tenL, String khoas, String khoa, String soDT, int Sl, String tinhT) {
+    public DonHang(String maDH, String nguoiD, String ngayD, String tenL, String khoas, String khoa, String soDT, int Sl, int tinhT) {
         this.maDH = maDH;
         this.ngayD = ngayD;
         this.tenLop = tenL;
@@ -86,7 +87,7 @@ public class DonHang extends SanPham implements Serializable {
         return soDT;
     }
 
-    public String getTinhT() {
+    public Integer getTinhT() {
         return tinhT;
     }
 
@@ -132,7 +133,7 @@ public class DonHang extends SanPham implements Serializable {
         this.soDT = soDT;
     }
 
-    public void setTinhT(String tinhT) {
+    public void setTinhT(int tinhT) {
         this.tinhT = tinhT;
     }
 
@@ -175,6 +176,13 @@ public class DonHang extends SanPham implements Serializable {
         return giaTien * soLuongDat;
     }
 
+    String TinhT(){
+        if(tinhT == 0){
+            return "Đã hoàn thành";
+        }else{
+        return "Chưa hoàn thành";
+    }
+    }
     @Override
     public String toString() {
         return "DonHang{" + "maDH=" + maDH + ", userName=" + userName + ", tenLop=" + tenLop + ", tenKhoa=" + tenKhoa + ", ngayD=" + ngayD + ", soDT=" + soDT + ", tinhT=" + tinhT + ", khoas=" + khoas + ", soLuongDat=" + soLuongDat + "Gia tien: "+ giaTien+'}';

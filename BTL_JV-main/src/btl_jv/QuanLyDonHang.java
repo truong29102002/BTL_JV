@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -41,36 +42,36 @@ public class QuanLyDonHang extends javax.swing.JFrame {
     DonHang dh = new DonHang();
 
     public void fakeData() {
-        DonHang a = new DonHang("DH01", "Nguyễn Thị Loan", "20/11/2020", "KHMT01", "K14", "Công nghệ thông tin", "0974536278", 53, "Đã hoàn thành");
+        DonHang a = new DonHang("DH01", "Nguyễn Thị Loan", "20/11/2020", "KHMT01", "K14", "Công nghệ thông tin", "0974536278", 53, 0);
         dsDH.add(a);
-        DonHang b = new DonHang("DH02", "Vũ Văn Thuấn", "25/09/2019", "HTTT02", "K15", "Công nghệ thông tin", "0987536278", 75, "Chờ xác nhận");
+        DonHang b = new DonHang("DH02", "Vũ Văn Thuấn", "25/09/2019", "HTTT02", "K15", "Công nghệ thông tin", "0987536278", 75, 1);
         dsDH.add(b);
-        DonHang c = new DonHang("DH03", "Hoàng Thị Huệ", "10/03/2018", "CNTT01", "K13", "Công nghệ thông tin", "0974536438", 64, "Đã hoàn thành");
+        DonHang c = new DonHang("DH03", "Hoàng Thị Huệ", "10/03/2018", "CNTT01", "K13", "Công nghệ thông tin", "0974536438", 64, 0);
         dsDH.add(c);
-        DonHang d = new DonHang("DH04", "Nguyễn Tuấn Tú", "15/12/2019", "KTPM01", "K17", "Công nghệ thông tin", "0973236278", 30, "Chờ xác nhận");
+        DonHang d = new DonHang("DH04", "Nguyễn Tuấn Tú", "15/12/2019", "KTPM01", "K17", "Công nghệ thông tin", "0973236278", 30, 1);
         dsDH.add(d);
-        DonHang e = new DonHang("DH05", "Trần Văn Cảnh", "08/12/2020", "CK1", "K13", "Cơ khí", "0932236278", 25, "Chờ xác nhận");
+        DonHang e = new DonHang("DH05", "Trần Văn Cảnh", "08/12/2020", "CK1", "K13", "Cơ khí", "0932236278", 25, 0);
         dsDH.add(e);
-        DonHang f = new DonHang("DH06", "Vũ Tuyết Dung", "04/11/2018", "DT1", "K14", "Điện tử", "0921236278", 42, "Đã hoàn thành");
+        DonHang f = new DonHang("DH06", "Vũ Tuyết Dung", "04/11/2018", "DT1", "K14", "Điện tử", "0921236278", 42, 1);
         dsDH.add(f);
-        DonHang g = new DonHang("DH07", "Nguyễn Thị Anh", "28/10/2020", "QTKS1", "K15", "Quản lý knh doanh", "0921236438", 31, "Chờ xác nhận");
+        DonHang g = new DonHang("DH07", "Nguyễn Thị Anh", "28/10/2020", "QTKS1", "K15", "Quản lý knh doanh", "0921236438", 31, 0);
         dsDH.add(g);
-        DonHang h = new DonHang("DH08", "Nguyễn Thị Thu Hồng", "11/09/2020", "DL2", "K13", "Du lịch", "0921224538", 10, "Chờ xác nhận");
+        DonHang h = new DonHang("DH08", "Nguyễn Thị Thu Hồng", "11/09/2020", "DL2", "K13", "Du lịch", "0921224538", 10, 1);
         dsDH.add(h);
-        DonHang i = new DonHang("DH09", "Vũ Hồng Hạnh", "02/10/2019", "NNA1", "K14", "Ngôn ngữ Anh", "0932224538", 29, "Đã hoàn thành");
+        DonHang i = new DonHang("DH09", "Vũ Hồng Hạnh", "02/10/2019", "NNA1", "K14", "Ngôn ngữ Anh", "0932224538", 29, 0);
         dsDH.add(i);
-        DonHang k = new DonHang("DH10", "Trần Văn Hải", "01/11/2018", "Kế Toán1", "K15", "Kế-Kiểm", "0931424538", 78, "Đã hoàn thành");
+        DonHang k = new DonHang("DH10", "Trần Văn Hải", "01/11/2018", "Kế Toán1", "K15", "Kế-Kiểm", "0931424538", 78, 1);
         dsDH.add(k);
-        DonHang l = new DonHang("DH11", "Vũ Tuấn Hưng", "01/09/2018", "KTMP03", "K15", "Công nghệ thông tin", "0961424538", 20, "Chờ xác nhận");
+        DonHang l = new DonHang("DH11", "Vũ Tuấn Hưng", "01/09/2018", "KTMP03", "K15", "Công nghệ thông tin", "0961424538", 20, 0);
         dsDH.add(l);
-        DonHang m = new DonHang("DH12", "Hoàng Hạnh Lan", "02/12/2018", "KTMP04", "K13", "Công nghệ thông tin", "0961424538", 36, "Chờ xác nhận");
+        DonHang m = new DonHang("DH12", "Hoàng Hạnh Lan", "02/12/2018", "KTMP04", "K13", "Công nghệ thông tin", "0961424538", 36, 0);
         dsDH.add(m);
     }
 
     public QuanLyDonHang() {
         initComponents();
         fakeData();
-        loadTableHoaDon();
+        loadTableHoaDon(dsDH);
         fileName = new File("DonHang_Excel.xls");
     }
 
@@ -101,8 +102,9 @@ public class QuanLyDonHang extends javax.swing.JFrame {
         txtTT.setText("");
     }
 
-    public void loadTableHoaDon() {
-        TableDH.setModel(new TableDonHang(dsDH));
+    public void loadTableHoaDon(ArrayList<DonHang> dsD) {
+
+        TableDH.setModel(new TableDonHang(dsD));
     }
 
     public void close() {
@@ -367,14 +369,16 @@ public class QuanLyDonHang extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jButton1)
                             .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jButton3)
-                            .addGap(64, 64, 64)))))
+                            .addGap(64, 64, 64)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -396,7 +400,7 @@ public class QuanLyDonHang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
+                        .addContainerGap()
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
@@ -427,7 +431,7 @@ public class QuanLyDonHang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
@@ -435,37 +439,46 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
     private void BtnDHCho(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDHCho
         // TODO add your handling code here:
-        ArrayList<DonHang> dsDHC = new ArrayList<>();
-        for (DonHang s : dsDH) {
-            if (s.getTinhT().equals("Chờ xác nhận")) {
-                if (!dsDHC.contains(s)) {
-                    dsDHC.add(s);
-                    TableDH.setModel(new TableDonHang(dsDHC));
+        try {
+            ArrayList<DonHang> dsDHC = new ArrayList<>();
+            for (DonHang s : dsDH) {
+                if (s.tinhT != 0) {
+                    if (!dsDHC.contains(s)) {
+                        dsDHC.add(s);
+
+                    }
                 }
-            } else {
-                dsDHC.remove(s);
-                TableDH.setModel(new TableDonHang(dsDHC));
             }
+            loadTableHoaDon(dsDHC);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
+
     }//GEN-LAST:event_BtnDHCho
 
     private void btnDHHoanThanh(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDHHoanThanh
-        ArrayList<DonHang> dsDHHT = new ArrayList<>();
-        for (DonHang s : dsDH) {
-            if (s.getTinhT().equals("Đã hoàn thành")) {
-                if (!dsDHHT.contains(s)) {
-                    dsDHHT.add(s);
-                    TableDH.setModel(new TableDonHang(dsDHHT));
-                }
 
+        try {
+            ArrayList<DonHang> dsDHHT = new ArrayList<>();
+            for (DonHang s : dsDH) {
+                if (s.tinhT == 0) {
+                    if (!dsDHHT.contains(s)) {
+                        dsDHHT.add(s);
+
+                    }
+                }
             }
+            loadTableHoaDon(dsDHHT);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
+
     }
 
     public void sua_TT() {
         for (DonHang s : dsDH) {
-            if (s.getTinhT().equals("Chờ xác nhận")) {
-                s.setTinhT("Đã hoàn thành");
+            if (s.tinhT != 0) {
+                s.setTinhT(0);
 
             }
         }
@@ -473,31 +486,36 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
     private void BtnXoaDH(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXoaDH
         // TODO add your handling code here:
-        dongChon = TableDH.getSelectedRow();
-        if (dongChon != -1) {
-            dh = dsDH.get(dongChon);
-            if (dh.tinhT.compareToIgnoreCase("Đã hoàn thành") == 0) {
-                JOptionPane.showMessageDialog(null, "Don hang da hoan thanh khong the huy.", "Thong bao", 1);
-            } else {
-                if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-                    dsDH.remove(dongChon);
-                    loadTableHoaDon();
-                    JOptionPane.showMessageDialog(this, "Xóa đơn hàng thành công", "Thông báo", WIDTH);
+        try {
+            dongChon = TableDH.getSelectedRow();
+            if (dongChon != -1) {
+                dh = dsDH.get(dongChon);
+                if (dh.tinhT == 0) {
+                    JOptionPane.showMessageDialog(null, "Don hang da hoan thanh khong the huy.", "Thong bao", 1);
+                } else {
+                    if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                        dsDH.remove(dongChon);
+                        loadTableHoaDon(dsDH);
+                        JOptionPane.showMessageDialog(this, "Xóa đơn hàng thành công", "Thông báo", WIDTH);
+                    }
                 }
+
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Chưa chọn dòng xóa", "Thông báo", WIDTH);
             }
 
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Chưa chọn dòng xóa", "Thông báo", WIDTH);
+            Clear();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
 
-        Clear();
     }//GEN-LAST:event_BtnXoaDH
 
     private void BtnXacNhan(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXacNhan
         // TODO add your handling code here:
         sua_TT();
-        loadTableHoaDon();
+        loadTableHoaDon(dsDH);
     }//GEN-LAST:event_BtnXacNhan
 
     private void BtnThoat(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnThoat
@@ -547,19 +565,25 @@ public class QuanLyDonHang extends javax.swing.JFrame {
 
     private void TableDHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDHMouseClicked
         // TODO add your handling code here:
-        dongChon = TableDH.getSelectedRow();
-        if (dongChon != -1) {
-            dh = dsDH.get(dongChon);
-            txtMaDH.setText(dh.getMaDH() + "");
-            txtNgayD.setText(dh.getNgayD() + "");
-            txtTenL.setText(dh.getTenLop() + "");
-            txtKhoa.setText(dh.getTenKhoa() + "");
-            txtKhoas.setText(dh.getKhoas() + "");
-            txtSDT.setText(dh.getSoDT() + "");
-            txtSLD.setText(dh.getSoLuongDat() + "");
-            txtTT.setText(dh.getTinhT() + "");
+        try {
+            dongChon = TableDH.getSelectedRow();
+            if (dongChon != -1) {
+                dh = dsDH.get(dongChon);
+                txtMaDH.setText(dh.getMaDH() + "");
+                txtNgayD.setText(dh.getNgayD() + "");
+                txtTenL.setText(dh.getTenLop() + "");
+                txtKhoa.setText(dh.getTenKhoa() + "");
+                txtKhoas.setText(dh.getKhoas() + "");
+                txtSDT.setText(dh.getSoDT() + "");
+                txtSLD.setText(dh.getSoLuongDat() + "");
+                txtTT.setText(dh.TinhT() + "");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+
     }//GEN-LAST:event_TableDHMouseClicked
-    }
+
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -585,7 +609,7 @@ public class QuanLyDonHang extends javax.swing.JFrame {
             }
         };
         Collections.sort(dsDH, c);
-        loadTableHoaDon();
+        loadTableHoaDon(dsDH);
     }//GEN-LAST:event_RdTangActionPerformed
 
     private void RdGiamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RdGiamActionPerformed
@@ -598,7 +622,7 @@ public class QuanLyDonHang extends javax.swing.JFrame {
             }
         };
         Collections.sort(dsDH, c.reversed());
-        loadTableHoaDon();
+        loadTableHoaDon(dsDH);
     }//GEN-LAST:event_RdGiamActionPerformed
 
     public JTextField getTxtSearch() throws Exception {
@@ -618,7 +642,7 @@ public class QuanLyDonHang extends javax.swing.JFrame {
                 for (DonHang s : dsDH) {
                     if (s.getMaDH().equals(maDHS)) {
                         lsDHSearch.add(s);
-                        TableDH.setModel(new TableDonHang(lsDHSearch));
+                        loadTableHoaDon(lsDHSearch);
                     }
                 }
             } else {
