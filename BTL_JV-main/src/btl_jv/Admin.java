@@ -67,6 +67,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         jButton2.setText("Quản lý phản hồi");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,6 +136,13 @@ public class Admin extends javax.swing.JFrame {
         n.setLocationRelativeTo(null);
         n.setVisible(true);
     }//GEN-LAST:event_btnUSerActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        QuanLyPhanHoi dlPH = new QuanLyPhanHoi();
+        dlPH.setLocationRelativeTo(null);
+        dlPH.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

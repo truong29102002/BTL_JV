@@ -1,8 +1,5 @@
 package btl_jv;
 
-
-
-
 import btl_jv.QLPH;
 import btl_jv.DBEngine;
 import java.awt.Toolkit;
@@ -19,7 +16,6 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author DELL
@@ -31,8 +27,7 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
     ArrayList<QLPH> dsph = new ArrayList<>();
     int chon = -1;
     //File fileName = new File("PhanHoi_Excel.xlsx");
-    
-    
+
     public void luuFile() {
         try {
             db.luuFile(fName, dsph);
@@ -48,20 +43,20 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
             System.out.println("Có lỗi: " + e.toString());
         }
     }
-    
+
     public void loadtablePhanHoi() {
         tablePH.setModel(new TablePhanHoi(dsph));
     }
-    
+
     public void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
-    
+
     public QuanLyPhanHoi() {
         initComponents();
         dsph.add(new QLPH("KH01", "Vũ Văn Thuấn", "anh1.jpg", "Tất cả các sản phẩm đều chất lượng, áo dày dặn màu sắc tươi sáng", 9.5));
-        dsph.add(new QLPH("KH02", "Hoàng Thị Huệ","anh2.png" ,"Sản phẩm đều chất lượng,có vài chiếc màu hơi khác so với còn lại", 8));
+        dsph.add(new QLPH("KH02", "Hoàng Thị Huệ", "anh2.png", "Sản phẩm đều chất lượng,có vài chiếc màu hơi khác so với còn lại", 8));
         dsph.add(new QLPH("KH03", "Trần Văn Cảnh", "anh4.jpg", "Thiếu 5 chiếc áo đồng phục màu hè", 5));
         dsph.add(new QLPH("KH04", "Nguyễn Thị Thu Hồng", "anh5.png", "Có 2 chiếc áo khoác đồng phục bị rách phần cánh tay", 6));
         dsph.add(new QLPH("KH05", "Trần Văn Hải", "anh10.png", "Tất cả các sản phẩm đều chất lượng, áo dày dặn màu sắc tươi sáng", 9));
@@ -93,6 +88,11 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý phản hồi của khách hàng");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
@@ -244,14 +244,6 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
-        // TODO add your handling code here:
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        if (JOptionPane.showConfirmDialog(this, "Bạn có muốn đóng?", "Close", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }      
     private void radTang(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTang
         Comparator<QLPH> c = new Comparator<QLPH>() {
             @Override
@@ -275,15 +267,15 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
         Collections.sort(dsph, c);
         loadtablePhanHoi();
     }//GEN-LAST:event_radGiam
-    
+
     ArrayList<QLPH> dsPHXD = new ArrayList<>();
     private void btnXayDung(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXayDung
         for (QLPH s : dsph) {
             if (s.getDiemDG() <= 7) {
                 dsPHXD.add(s);
-                tablePH.setModel(new TablePhanHoi(dsPHXD));            
+                tablePH.setModel(new TablePhanHoi(dsPHXD));
             }
-        }    
+        }
     }//GEN-LAST:event_btnXayDung
 
     ArrayList<QLPH> dsPHTC = new ArrayList<>();
@@ -302,7 +294,7 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
             if (row == -1) {
                 JOptionPane.showMessageDialog(QuanLyPhanHoi.this, "Chọn phản hồi muốn ẩn", "Lỗi", JOptionPane.ERROR_MESSAGE);
             } else {
-            int confirm = JOptionPane.showConfirmDialog(QuanLyPhanHoi.this,"Bạn có chắc muốn ẩn phản hồi này?","Xác nhận",JOptionPane.YES_NO_OPTION);
+                int confirm = JOptionPane.showConfirmDialog(QuanLyPhanHoi.this, "Bạn có chắc muốn ẩn phản hồi này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     dsph.remove(row);
                     loadtablePhanHoi();
@@ -323,6 +315,14 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,
                 "Lưu file thành công !", "Thông báo", WIDTH);
     }//GEN-LAST:event_btnLuuFile
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn đóng ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

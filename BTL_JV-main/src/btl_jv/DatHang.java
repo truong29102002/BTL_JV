@@ -467,7 +467,7 @@ public class DatHang extends javax.swing.JFrame {
 
     private void linkFeedbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkFeedbackMouseClicked
         // TODO add your handling code here:
-        FeedBack fb = new FeedBack();
+        QuanLyPhanHoi fb = new QuanLyPhanHoi();
         fb.setLocationRelativeTo(null);
         fb.setVisible(true);
     }//GEN-LAST:event_linkFeedbackMouseClicked

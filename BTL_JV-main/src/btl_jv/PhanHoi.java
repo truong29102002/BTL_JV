@@ -1,14 +1,12 @@
 package btl_jv;
 
-
-
-
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -17,7 +15,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author DELL
@@ -30,12 +27,12 @@ public class PhanHoi extends javax.swing.JFrame {
     public PhanHoi() {
         initComponents();
     }
-    
+
     public void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,6 +51,11 @@ public class PhanHoi extends javax.swing.JFrame {
         fileChon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 102));
@@ -178,9 +180,9 @@ public class PhanHoi extends javax.swing.JFrame {
         FileNameExtensionFilter img = new FileNameExtensionFilter("hình ảnh", "jpg", "png");
         fileChooser.setFileFilter(img);
         fileChooser.setMultiSelectionEnabled(false);
-        
+
         int x = fileChooser.showDialog(this, "Chọn file");
-        if(x == JFileChooser.APPROVE_OPTION){
+        if (x == JFileChooser.APPROVE_OPTION) {
             File f = fileChooser.getSelectedFile();
             fileChon.setIcon(new ImageIcon(f.getAbsolutePath()));
         }
@@ -208,6 +210,14 @@ public class PhanHoi extends javax.swing.JFrame {
         fileChon.setIcon(null);
         txtYK.setText("");
     }//GEN-LAST:event_btnReset
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn đóng ?", "Thong bao", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
