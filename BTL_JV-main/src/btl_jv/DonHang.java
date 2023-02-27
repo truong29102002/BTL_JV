@@ -174,4 +174,10 @@ public class DonHang extends SanPham implements Serializable {
     double TongTien() {
         return giaTien * soLuongDat;
     }
+
+    @Override
+    public String toString() {
+        return "DonHang{" + "maDH=" + maDH + ", userName=" + userName + ", tenLop=" + tenLop + ", tenKhoa=" + tenKhoa + ", ngayD=" + ngayD + ", soDT=" + soDT + ", tinhT=" + tinhT + ", khoas=" + khoas + ", soLuongDat=" + soLuongDat + "Gia tien: "+ giaTien+'}';
+    }
+    
 }
