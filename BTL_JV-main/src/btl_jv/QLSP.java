@@ -63,7 +63,7 @@ public class QLSP extends javax.swing.JFrame {
     }
 
     public void loadTableSP() {
-        docFile();
+        //docFile();
         tblSP.setModel(new TableSP(dssp));
         luuFile();
     }
