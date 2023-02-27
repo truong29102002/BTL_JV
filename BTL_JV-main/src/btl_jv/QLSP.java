@@ -463,7 +463,7 @@ public class QLSP extends javax.swing.JFrame {
 
     public JTextField getTxtDonGia() throws Exception {
         if (Double.parseDouble(txtDonGia.getText()) < 0) {
-            throw new Exception("Đơn giá phải lớn > 0");
+            throw new Exception("Đơn giá phải lớn hơn 0");
         }
         return txtDonGia;
     }
@@ -477,7 +477,7 @@ public class QLSP extends javax.swing.JFrame {
 
     public JTextField getTxtSlcon() throws Exception {
         if (Integer.parseInt(txtSlcon.getText()) < 0) {
-            throw new Exception("Số lượng còn lại >= 0");
+            throw new Exception("Số lượng còn >= 0");
         }
         return txtSlcon;
     }
@@ -491,7 +491,7 @@ public class QLSP extends javax.swing.JFrame {
 
     public JTextField getTxtTimKiem() throws Exception {
         if (txtTimKiem.getText().equals("")) {
-            throw new Exception("Muốn tìm phải nhập tên sản phẩm");
+            throw new Exception("Nhập tên sản phẩm cần tìm");
         }
         return txtTimKiem;
     }
@@ -559,7 +559,7 @@ public class QLSP extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(QLSP.this, "Vui lòng chọn sản phẩm muốn xóa", "Lỗi", JOptionPane.ERROR_MESSAGE);
             } else {
                 int confirm = JOptionPane.showConfirmDialog(QLSP.this,
-                        "Bạn có chắc muốn xoa san pham nay?",
+                        "Bạn có chắc muốn xóa sản phẩm này?",
                         "Xác nhận",
                         JOptionPane.YES_NO_OPTION);
                 //int confirm =JOptionPane.showConfirmDialog(QLSP.this,"Ban co chac muon xoa?");
