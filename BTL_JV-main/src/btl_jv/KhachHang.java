@@ -4,13 +4,14 @@
  */
 package btl_jv;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Administrator
  */
-public class KhachHang extends TaiKhoan{
+public class KhachHang extends TaiKhoan implements Serializable{
     String id,hoten,phutrach,diachi,email;
     int sdt;
     
@@ -99,7 +100,7 @@ public class KhachHang extends TaiKhoan{
         final KhachHang other = (KhachHang) obj;
         return Objects.equals(this.id, other.id);
     }
-
+    
     
 
     

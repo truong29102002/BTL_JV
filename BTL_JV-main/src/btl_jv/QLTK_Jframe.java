@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package btl_jv;
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,8 +17,8 @@ import javax.swing.JTextField;
  *
  * @author Administrator
  */
-public class QLTK_Jframe extends javax.swing.JFrame {
-
+public class QLTK_Jframe extends javax.swing.JFrame implements Serializable{
+    
     /**
      * Creates new form QLTK_Jframe
      */
@@ -22,19 +26,22 @@ public class QLTK_Jframe extends javax.swing.JFrame {
     public void fakeData(){
         KhachHang a1= new KhachHang("1", "Admin", "admin","Ha Noi","admin@gmail.com", 123456789, "admin", "admin", "user");
         KhachHang a2= new KhachHang("2", "User", "KTPM1","Ha Noi","user@gmail.com", 123456789, "user", "1234", "user");
+        KhachHang a3= new KhachHang("3", "abc", "abc","Ha Noi","abc@gmail.com", 98653251, "abc", "1234", "user");
         dstk.add(a1);
         dstk.add(a2);
+        dstk.add(a3);
     }
     public QLTK_Jframe() {
         initComponents();
         fakeData();
-        loadtable();
+        loadtable(dstk);
     }
     int dongchon = -1;
     ArrayList<KhachHang> dstk = new ArrayList<KhachHang>();
     KhachHang tk = new KhachHang();
-
-    public void loadtable() {
+    DBEngine db = new DBEngine();
+    String fName = "dsTaiKhoan.txt";
+    public void loadtable(ArrayList<KhachHang> dstk) {
         tableTK.setModel(new TableTK(dstk));
     }
 
@@ -70,6 +77,11 @@ public class QLTK_Jframe extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableTK = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        buttim = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        butghi = new javax.swing.JButton();
+        butdoc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -132,6 +144,37 @@ public class QLTK_Jframe extends javax.swing.JFrame {
 
         jLabel4.setText("Sđt");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("QUẢN LÝ TÀI KHOẢN");
+
+        buttim.setText("Tìm kiếm");
+        buttim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttimActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Reset");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        butghi.setText("Ghi file");
+        butghi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butghiActionPerformed(evt);
+            }
+        });
+
+        butdoc.setText("Đọc file");
+        butdoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butdocActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,6 +182,9 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 66, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -164,53 +210,70 @@ public class QLTK_Jframe extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtmk)
-                                .addGap(14, 14, 14))
+                                .addGap(46, 46, 46))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(txttk, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 37, Short.MAX_VALUE)))
-                .addGap(32, 32, 32)
+                                .addGap(0, 39, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(butthem)
                     .addComponent(butsua)
-                    .addComponent(butxoa))
-                .addGap(52, 52, 52))
+                    .addComponent(butxoa)
+                    .addComponent(buttim)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(butghi)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(butthem, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(butdoc)))
+                .addGap(49, 49, 49))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(331, 331, 331)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(txttk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(txtten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtmk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtdiachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                    .addComponent(txttk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(txtten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtmk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtdiachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(butdoc)
+                        .addGap(18, 18, 18)
+                        .addComponent(butghi)
+                        .addGap(18, 18, 18)
                         .addComponent(butthem)
-                        .addGap(63, 63, 63)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttim)
+                        .addGap(18, 18, 18)
                         .addComponent(butsua)
-                        .addGap(48, 48, 48)
+                        .addGap(18, 18, 18)
                         .addComponent(butxoa)))
                 .addGap(48, 48, 48))
         );
@@ -221,17 +284,28 @@ public class QLTK_Jframe extends javax.swing.JFrame {
     private void butthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butthemActionPerformed
         // TODO add your handling code here:
         try {
+            String userName= getTxttk().getText();
             i = ++i;
         String hoTen = getTxtten().getText();
         String phuTrach = getTxtid().getText();
         String diaChi = getTxtdiachi().getText();
         String email = getTxtemail().getText();
         int sdt = Integer.parseInt(getTxtsdt().getText());
-        String userName = getTxttk().getText();
         String passWord = getTxtmk().getText();
         tk = new KhachHang(String.valueOf(i), hoTen, phuTrach, diaChi, email, sdt, userName, passWord, "user");
-        dstk.add(tk);
-        loadtable();
+        int dem=0;
+        for(KhachHang i:dstk){
+            if(tk.userName.compareToIgnoreCase(i.userName)==0){
+                if(dstk.contains(i)){
+                    JOptionPane.showMessageDialog(this,"Tên tài khoản ko được trùng nhau");
+                    dem++;
+                }  
+            }
+        }
+        if(dem==0){
+            dstk.add(tk);
+        }
+        loadtable(dstk);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString());
         }
@@ -254,7 +328,7 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             tk.setPassWord(getTxtmk().getText()+"");
             dstk.set(dongchon, tk);
             JOptionPane.showMessageDialog(this, "Sua thanh cong","Thong bao",JOptionPane.WIDTH);
-            loadtable();
+            loadtable(dstk);
         
         } catch (Exception e) {
                JOptionPane.showMessageDialog(this, e.toString());
@@ -280,7 +354,7 @@ public class QLTK_Jframe extends javax.swing.JFrame {
             int confirm =JOptionPane.showConfirmDialog(this,"Ban chac chan muon xoa ?","Xac nhan",JOptionPane.YES_NO_OPTION);
             if(confirm == JOptionPane.YES_OPTION){
                 dstk.remove(row);
-                loadtable();
+                loadtable(dstk);
             }
         }
     }//GEN-LAST:event_butxoaActionPerformed
@@ -300,6 +374,58 @@ public class QLTK_Jframe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableTKMouseClicked
     
+    private void buttimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttimActionPerformed
+        // TODO add your handling code here:
+        try {
+            ArrayList<KhachHang> tkh= new ArrayList<>();
+            String tim= getTxtten().getText().trim();
+            for(KhachHang i :dstk){
+                if( tim.compareToIgnoreCase(i.hoten)==0){
+                    if(!tkh.contains(i))
+                        tkh.add(i);
+                }
+            }
+            loadtable(tkh);
+            if(tkh.isEmpty()){
+                JOptionPane.showMessageDialog(null, "không tìm thấy");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tim kiem: " + e.toString());
+        }
+    }//GEN-LAST:event_buttimActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            // TODO add your handling code here:
+            loadtable(dstk);
+            txtid.setText("");
+            txtten.setText("");
+            txtsdt.setText("");
+            txtemail.setText("");
+            txttk.setText("");
+            txtmk.setText("");
+            txtdiachi.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void butghiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butghiActionPerformed
+        // TODO add your handling code here:
+         try {
+            db.luuFile(fName, dstk);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_butghiActionPerformed
+
+    private void butdocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butdocActionPerformed
+        ArrayList<KhachHang> kh= null;
+        try {
+            kh = (ArrayList<KhachHang>) db.docFile(fName);
+        } catch (Exception e) {
+            System.out.println("Có lỗi: " + e.toString());
+        } 
+        loadtable(kh);
+    }//GEN-LAST:event_butdocActionPerformed
+
     public JTextField getTxtid()throws Exception {
         if(txtid.getText().equals(""))
             throw new Exception("ko duoc de trong phu trach!");
@@ -374,16 +500,21 @@ public class QLTK_Jframe extends javax.swing.JFrame {
                 new QLTK_Jframe().setVisible(true);
             }
         });
+        System.gc();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butdoc;
+    private javax.swing.JButton butghi;
     private javax.swing.JButton butsua;
     private javax.swing.JButton butthem;
+    private javax.swing.JButton buttim;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton butxoa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -391,6 +522,7 @@ public class QLTK_Jframe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableTK;
     private javax.swing.JTextField txtdiachi;
