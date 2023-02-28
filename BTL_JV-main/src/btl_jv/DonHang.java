@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 public class DonHang extends SanPham implements Serializable {
 
-    String maDH, userName, tenLop, tenKhoa, ngayD, soDT, tinhT, khoas;
+    private String maDH;
+    String userName, tenLop, tenKhoa, ngayD, soDT, tinhT, khoas;
     int soLuongDat, yeuC;
 
     public DonHang() {

@@ -36,10 +36,10 @@ public class DatHang extends javax.swing.JFrame {
      * Creates new form DatHang
      */
     ArrayList<DonHang> dsDH = new ArrayList<>();
+    DonHang dh = new DonHang();
+    
     int chonDong = -1;
     int i = 0;
-    DonHang dh = new DonHang();
-
     void TongTien() {
         double sumTT = 0;
         for (DonHang i : dsDH) {
@@ -466,7 +466,7 @@ public class DatHang extends javax.swing.JFrame {
 
     private void linkFeedbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkFeedbackMouseClicked
         // TODO add your handling code here:
-        QuanLyPhanHoi fb = new QuanLyPhanHoi();
+        PhanHoi fb = new PhanHoi();
         fb.setLocationRelativeTo(null);
         fb.setVisible(true);
     }//GEN-LAST:event_linkFeedbackMouseClicked
@@ -557,7 +557,7 @@ public class DatHang extends javax.swing.JFrame {
             if (chonDong != -1) {
                 dh = dsDH.get(chonDong);
                 DonHang dnUpdate = new DonHang();
-                dnUpdate.setMaDH(dh.maDH);
+                dnUpdate.setMaDH(dh.getMaDH());
                 dnUpdate.setUserName(labelUser.getText());
                 dnUpdate.setTenLop(getTxtTenLop().getText() + "");
                 dnUpdate.setTenKhoa(getTxtKhoa().getText());
@@ -735,6 +735,7 @@ public class DatHang extends javax.swing.JFrame {
 
             }
             LoadTable(dsDH);
+            TongTien();
             JOptionPane.showMessageDialog(null, "Doc tu file: Dat_Hang.xlsx");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.toString());

@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -63,6 +64,9 @@ public class QuanLyPhanHoi extends javax.swing.JFrame {
         dsph.add(new QLPH("KH06", "Hoàng Hạnh Lan", "anh8.png", "Hẹn ngày 12 giao nhưng đến ngày 20 mới giao", 4.5));
 
         tablePH.setModel(new TablePhanHoi(dsph));
+        ButtonGroup gr = new ButtonGroup();
+        gr.add(radGiam);
+        gr.add(radTang);
     }
 
     /**

@@ -190,15 +190,20 @@ public class PhanHoi extends javax.swing.JFrame {
 
     private void btnGui(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGui
         //if ("".equals(diemDG.getText())) {
-        if (Double.parseDouble(diemDG.getText()) < 0 || Double.parseDouble(diemDG.getText()) > 10) {
-            jLabel1.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Điểm đánh giá phải nằm trong khoảng từ 0 đến 10!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        } else if ("".equals(txtYK.getText())) {
-            jLabel2.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đóng góp!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Đánh giá của bạn đã gửi thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (Double.parseDouble(diemDG.getText()) < 0 || Double.parseDouble(diemDG.getText()) > 10) {
+                jLabel1.setForeground(Color.red);
+                JOptionPane.showMessageDialog(null, "Điểm đánh giá phải nằm trong khoảng từ 0 đến 10!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            } else if ("".equals(txtYK.getText())) {
+                jLabel2.setForeground(Color.red);
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập đóng góp!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Đánh giá của bạn đã gửi thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
+
     }//GEN-LAST:event_btnGui
 
     private void btnThoat(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoat

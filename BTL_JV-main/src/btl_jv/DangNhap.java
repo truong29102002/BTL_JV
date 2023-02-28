@@ -21,17 +21,15 @@ public class DangNhap extends javax.swing.JFrame {
     ArrayList<TaiKhoan> listTk = new ArrayList<>();
     TaiKhoan checkTK = new TaiKhoan();
 
-   
-
-    public JTextField getTxtTK() throws Exception{
-        if(txtTK.getText().equals("")){
+    public JTextField getTxtTK() throws Exception {
+        if (txtTK.getText().equals("")) {
             throw new Exception("Tai khoan khong duoc de trong");
         }
         return txtTK;
     }
 
-    public JPasswordField getTxtmk() throws Exception{
-        if(txtmk.getPassword().equals("")){
+    public JPasswordField getTxtmk() throws Exception {
+        if (txtmk.getPassword().equals("")) {
             throw new Exception("");
         }
         return txtmk;
@@ -116,35 +114,40 @@ public class DangNhap extends javax.swing.JFrame {
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
         // khởi tạo 2 tài khoản
-        listTk.add(new TaiKhoan("admin", "admin", "admin"));
-        listTk.add(new TaiKhoan("user", "1234", "user"));
-        char[] mk = txtmk.getPassword(); // lấy mk
-        String strMk = String.valueOf(mk); // chuyển sang String
-        TaiKhoan tk = new TaiKhoan(txtTK.getText().trim(), strMk); // tạo tk mới kiểm tra 
+        try {
+            listTk.add(new TaiKhoan("admin", "admin", "admin"));
+            listTk.add(new TaiKhoan("user", "1234", "user"));
+            char[] mk = txtmk.getPassword(); // lấy mk
+            String strMk = String.valueOf(mk); // chuyển sang String
+            TaiKhoan tk = new TaiKhoan(txtTK.getText().trim(), strMk); // tạo tk mới kiểm tra 
 
-        if (listTk.contains(tk)) { // kiem tra tồn tại
-            checkTK = listTk.get(listTk.indexOf(tk));
-            if ("admin".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
-                Admin fad = new Admin();
-                fad.setLocationRelativeTo(null);
-                fad.setVisible(true);
+            if (listTk.contains(tk)) { // kiem tra tồn tại
+                checkTK = listTk.get(listTk.indexOf(tk));
+                if ("admin".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
+                    Admin fad = new Admin();
+                    fad.setLocationRelativeTo(null);
+                    fad.setVisible(true);
 //                this.setVisible(false);
-                this.dispose();
-            } else if ("user".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
-                DatHang us = new DatHang();
-                us.setLocationRelativeTo(null);
-                us.labelUser.setText(txtTK.getText());
-                us.setVisible(true);
+                    this.dispose();
+                } else if ("user".equals(checkTK.quyen) && checkTK.userName.compareToIgnoreCase(tk.userName) == 0 && checkTK.passWord.compareToIgnoreCase(tk.passWord) == 0) {
+                    DatHang us = new DatHang();
+                    us.setLocationRelativeTo(null);
+                    us.labelUser.setText(txtTK.getText());
+                    us.setVisible(true);
 //                this.setVisible(false);
-                this.dispose();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sai mat khau", "Thong bao", JOptionPane.WARNING_MESSAGE);
+
+                }
+
             } else {
-                JOptionPane.showMessageDialog(null, "Sai mat khau", "Thong bao", JOptionPane.WARNING_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "Khong ton tai tai khoan nay", "Thong bao", JOptionPane.WARNING_MESSAGE);
             }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Khong ton tai tai khoan nay", "Thong bao", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
+
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
