@@ -37,6 +37,8 @@ public class DangNhap extends javax.swing.JFrame {
 
     public DangNhap() {
         initComponents();
+        listTk.add(new TaiKhoan("admin", "admin", "admin"));
+        listTk.add(new TaiKhoan("user", "1234", "user"));
     }
 
     /**
@@ -115,8 +117,7 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         // khởi tạo 2 tài khoản
         try {
-            listTk.add(new TaiKhoan("admin", "admin", "admin"));
-            listTk.add(new TaiKhoan("user", "1234", "user"));
+
             char[] mk = txtmk.getPassword(); // lấy mk
             String strMk = String.valueOf(mk); // chuyển sang String
             TaiKhoan tk = new TaiKhoan(txtTK.getText().trim(), strMk); // tạo tk mới kiểm tra 
