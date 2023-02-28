@@ -4,7 +4,6 @@
  */
 package btl_jv;
 
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -127,7 +126,7 @@ public class DatHang extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Đặt hàng");
+        setTitle("Đặt mua");
         setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         setSize(new java.awt.Dimension(1920, 1080));
 
@@ -247,7 +246,7 @@ public class DatHang extends javax.swing.JFrame {
         jLabel8.setText("VND");
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel10.setText("Đặt hàng");
+        jLabel10.setText("Đặt mua");
 
         btnXuatFile.setText("Xuất File");
         btnXuatFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -522,7 +521,7 @@ public class DatHang extends javax.swing.JFrame {
             String khoa = (String) cbxKhoa.getSelectedItem();
             int soLuong = Integer.parseInt(getTxtSLD().getText().trim() + "");
             double giaTien = Double.parseDouble(lbGiaTien.getText() + "");
-            DonHang dhn = new DonHang("D" + String.valueOf(i), labelUser.getText(), tenLop, tenKhoa, loaiSP, size, khoa, soLuong, giaTien);
+            DonHang dhn = new DonHang("D" + String.valueOf(i), labelUser.getText(), tenLop, tenKhoa, loaiSP, size, khoa, soLuong, giaTien, 0);
             dsDH.add(dhn);
             LoadTable(dsDH);
             TongTien();
@@ -621,10 +620,23 @@ public class DatHang extends javax.swing.JFrame {
 
     private void btnRqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRqActionPerformed
         // TODO add your handling code here:
+        int d = 0;
         if (dsDH.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Không có đơn hàng nào trong danh sách", "Thong bao", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Yêu cầu đặt hàng đã được gửi.", "Thong bao", 1);
+            for (DonHang donHang : dsDH) {
+                if (donHang.yeuC == 0) {
+                    donHang.setYeuC(1);
+                    d++;
+                }
+            }
+            if (d == 0) {
+                JOptionPane.showMessageDialog(null, "Không có đơn hàng nào chưa gửi.", "Thong bao", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Yêu cầu đặt hàng đã được gửi.", "Thong bao", 1);
+            }
+
+            LoadTable(dsDH);
         }
 
     }//GEN-LAST:event_btnRqActionPerformed
@@ -709,7 +721,13 @@ public class DatHang extends javax.swing.JFrame {
                 String khoas = tableDH.getValueAt(i, j + 6).toString();
                 int slD = Integer.parseInt(tableDH.getValueAt(i, j + 7).toString());
                 double gT = Double.parseDouble(tableDH.getValueAt(i, j + 8).toString());
-                dh = new DonHang(maDH, userName, tenLop, tenKhoa, LoaiSP, size, khoas, slD, gT / slD);
+                int yc;
+                if (tableDH.getValueAt(i, j + 8).toString().equals("Đã gửi")) {
+                    yc = 1;
+                } else {
+                    yc = 0;
+                }
+                dh = new DonHang(maDH, userName, tenLop, tenKhoa, LoaiSP, size, khoas, slD, gT / slD, yc);
                 if (!dsDH.contains(dh)) {
                     dsDH.add(dh);
                 }

@@ -31,13 +31,15 @@ public class Admin extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         btnQlDonH = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         btnUSer = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin");
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton1.setText("Quản lý sản phẩm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +47,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        btnQlDonH.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnQlDonH.setText("Quản lý đơn hàng ");
         btnQlDonH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,13 +55,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Thoát");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
+        btnUSer.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnUSer.setText("Quản lý người dùng");
         btnUSer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +63,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton2.setText("Quản lý phản hồi");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,39 +71,49 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/download.png"))); // NOI18N
+        jLabel1.setIconTextGap(10);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel2.setText("TRANG CHỦ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(btnQlDonH, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(107, 107, 107)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton3)
-                                .addComponent(btnUSer)
-                                .addComponent(jButton2)))))
-                .addContainerGap(996, Short.MAX_VALUE))
+                .addGap(67, 67, 67)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQlDonH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUSer, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jButton1)
-                .addGap(55, 55, 55)
-                .addComponent(btnQlDonH)
-                .addGap(60, 60, 60)
-                .addComponent(btnUSer)
-                .addGap(57, 57, 57)
-                .addComponent(jButton2)
-                .addGap(80, 80, 80)
-                .addComponent(jButton3)
-                .addContainerGap(202, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnQlDonH, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(btnUSer, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,11 +132,6 @@ public class Admin extends javax.swing.JFrame {
         qlSP.setLocationRelativeTo(null);
         qlSP.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnUSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUSerActionPerformed
         // TODO add your handling code here:
@@ -184,6 +187,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton btnUSer;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

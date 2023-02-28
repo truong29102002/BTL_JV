@@ -13,8 +13,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableDatHang extends AbstractTableModel {
 
-    String nameCol[] = {"Mã Đơn", "Người Đặt", "Lớp", "Khoa", "Tên Sản Phẩm", "Size", "Khóa", "Số lượng", "Thành Tiền"};
-    Class cl[] = {String.class, String.class, String.class, String.class, String.class, String.class, String.class, Integer.class, Double.class};
+    String nameCol[] = {"Mã Đơn", "Người Đặt", "Lớp", "Khoa", "Tên Sản Phẩm", "Size", "Khóa", "Số lượng", "Thành Tiền","Trạng thái"};
+    Class cl[] = {String.class, String.class, String.class, String.class, String.class, String.class, String.class, Integer.class, Double.class,String.class};
     ArrayList<DonHang> dsDH = new ArrayList<>();
 
     public TableDatHang(ArrayList<DonHang> dsD) {
@@ -54,6 +54,8 @@ public class TableDatHang extends AbstractTableModel {
                 return dsDH.get(rowIndex).getSoLuongDat();
             case 8:
                 return dsDH.get(rowIndex).TongTien();
+            case 9:
+                return dsDH.get(rowIndex).YeuCau();
             default:
                 return null;
         }

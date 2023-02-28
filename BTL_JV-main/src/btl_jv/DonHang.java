@@ -15,7 +15,7 @@ import java.util.Objects;
 public class DonHang extends SanPham implements Serializable {
 
     String maDH, userName, tenLop, tenKhoa, ngayD, soDT, tinhT, khoas;
-    int soLuongDat;
+    int soLuongDat, yeuC;
 
     public DonHang() {
     }
@@ -36,7 +36,7 @@ public class DonHang extends SanPham implements Serializable {
         this.soLuongDat = Sl;
     }
 
-    public DonHang(String maDH, String userName, String tenLop, String tenKhoa, String LoaiSP, String size, String khoas, int soLuongDat, double giaTien) {
+    public DonHang(String maDH, String userName, String tenLop, String tenKhoa, String LoaiSP, String size, String khoas, int soLuongDat, double giaTien, int yeuC) {
         this.maDH = maDH;
         this.userName = userName;
         this.tenLop = tenLop;
@@ -46,10 +46,19 @@ public class DonHang extends SanPham implements Serializable {
         this.khoas = khoas;
         this.soLuongDat = soLuongDat;
         this.giaTien = giaTien;
+        this.yeuC = yeuC;
     }
 
     public String getMaDH() {
         return maDH;
+    }
+
+    public int getYeuC() {
+        return yeuC;
+    }
+
+    public void setYeuC(int yeuC) {
+        this.yeuC = yeuC;
     }
 
     public String getUserName() {
@@ -175,7 +184,13 @@ public class DonHang extends SanPham implements Serializable {
     double TongTien() {
         return giaTien * soLuongDat;
     }
-
+    String YeuCau(){
+        if(yeuC == 0){
+            return "Chưa gửi";
+        }else{
+            return "Đã gửi";
+        }
+    }
     @Override
     public String toString() {
         return "DonHang{" + "maDH=" + maDH + ", userName=" + userName + ", tenLop=" + tenLop + ", tenKhoa=" + tenKhoa + ", ngayD=" + ngayD + ", soDT=" + soDT + ", tinhT=" + tinhT + ", khoas=" + khoas + ", soLuongDat=" + soLuongDat + "Gia tien: "+ giaTien+'}';
